@@ -5,4 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 var container = Startup.Configure();
 var fooService = container.GetService<IFoo>();
-fooService.GetData();
+
+if (fooService != null)
+{
+    fooService.GetData();
+}
+else
+{
+    Console.WriteLine("Failed to retrieve IFoo service.");
+}
