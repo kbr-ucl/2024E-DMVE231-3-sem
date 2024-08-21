@@ -5,7 +5,7 @@ namespace EjendomBeregner.BusinessLogic;
 /// <summary>
 ///     Application service der beregner ejendommens kvadratmeter.
 /// </summary>
-public class EjendomBeregnerService
+public class EjendomBeregnerService : IEjendomBeregnerService
 {
     private readonly ILejemaalRepository _lejemaalRepository;
 
