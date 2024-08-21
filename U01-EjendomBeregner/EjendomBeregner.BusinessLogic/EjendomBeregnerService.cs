@@ -1,36 +1,39 @@
 ﻿namespace EjendomBeregner.BusinessLogic;
 
-public class EjendomBeregnerService
+
+/// <summary>
+///     Service interface for beregner service
+/// </summary>
+public interface IEjendomBeregnerService
 {
     /// <summary>
-    ///     Beregner ejendommens kvadratmeter ud fra ejendommens lejelmål.
-    ///     Lejemål er i en kommasepareret tekstfil. Formatet af filen er:
-    ///     "lejlighednummer", "kvadratmeter", "antal rum"
-    ///     lejlighednummer: int
-    ///     kvadratmeter: double
-    ///     antal rum: double
+    ///     Beregner ejendommens kvadratmeter.
     /// </summary>
-    /// <param name="lejemaalDataFilename"></param>
-    /// <returns></returns>
-    public double BeregnKvadratmeter(string lejemaalDataFilename)
+    /// <returns>Ejendommens kvadratmeter</returns>
+    double BeregnKvadratmeter();
+}
+
+/// <summary>
+///     Application service der beregner ejendommens kvadratmeter.
+/// </summary>
+public class EjendomBeregnerService
+{
+    private readonly ILejemaalRepository _lejemaalRepository;
+
+    public EjendomBeregnerService(ILejemaalRepository lejemaalRepository)
     {
-        var lejemaalene = File.ReadAllLines(lejemaalDataFilename);
-        var kvadratmeter = 0.0;
-
-
-        foreach (var lejemaal in lejemaalene)
-        {
-            var lejemaalParts = lejemaal.Split(',');
-            double lejemaalKvadratmeter;
-            double.TryParse(RemoveQuotes(lejemaalParts[1]), out lejemaalKvadratmeter);
-            kvadratmeter += lejemaalKvadratmeter;
-        }
-
-        return kvadratmeter;
+        _lejemaalRepository = lejemaalRepository;
     }
 
-    private string RemoveQuotes(string lejemaalPart)
+    /// <summary>
+    ///     Beregner ejendommens kvadratmeter ud fra ejendommens lejelmål.
+    /// </summary>
+    /// <returns>Ejendommens kvadratmeter</returns>
+    public double BeregnKvadratmeter()
     {
-        return lejemaalPart.Replace('"', ' ').Trim();
+        var lejemaals = _lejemaalRepository.HentLejemaal();
+        double kvadratmeter = 0;
+        foreach (var lejemaal in lejemaals) kvadratmeter += lejemaal.Kvadratmeter;
+        return kvadratmeter;
     }
 }
