@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic.Test\BusinessLogic.Test.csproj" />
-  </ItemGroup>
-
 </Project>
