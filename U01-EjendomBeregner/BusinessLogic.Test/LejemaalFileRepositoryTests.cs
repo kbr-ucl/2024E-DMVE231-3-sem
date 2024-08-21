@@ -1,4 +1,4 @@
-﻿using EjendomBeregner.BusinessLogic;
+﻿using EjendomBeregner.BusinessLogic.Infrastructure;
 using Moq;
 
 namespace BusinessLogic.Test;
@@ -16,7 +16,7 @@ public class LejemaalFileRepositoryTests
         var fileWrapperMock = new Mock<IFileWrapper>();
         fileWrapperMock.Setup(x => x.ReadAllLines(It.IsAny<string>())).Returns(new[] { csvLine });
 
-        var sut = new LejemaalFileRepository(String.Empty, fileWrapperMock.Object);
+        var sut = new LejemaalFileRepository(string.Empty, fileWrapperMock.Object);
 
         // Act
         var actual = sut.HentLejemaal().First();

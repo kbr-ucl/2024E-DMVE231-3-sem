@@ -1,4 +1,6 @@
 ﻿using EjendomBeregner.BusinessLogic;
+using EjendomBeregner.BusinessLogic.Domain;
+using EjendomBeregner.BusinessLogic.Infrastructure;
 using Moq;
 
 namespace BusinessLogic.Test;

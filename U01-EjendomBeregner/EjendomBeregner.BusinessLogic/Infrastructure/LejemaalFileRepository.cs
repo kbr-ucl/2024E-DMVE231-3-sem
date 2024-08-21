@@ -1,18 +1,7 @@
 ﻿using System.Globalization;
+using EjendomBeregner.BusinessLogic.Domain;
 
-namespace EjendomBeregner.BusinessLogic;
-
-/// <summary>
-///     Repository interface for lejemål
-/// </summary>
-public interface ILejemaalRepository
-{
-    /// <summary>
-    ///     Indlæser ejendommens lejelmål.
-    /// </summary>
-    /// <returns>Liste af ejendommens lejemål</returns>
-    IEnumerable<Lejemaal> HentLejemaal();
-}
+namespace EjendomBeregner.BusinessLogic.Infrastructure;
 
 /// <summary>
 ///     Implementation af ILejemaalRepository der indlæser lejemål fra en kommasepareret tekstfil.
@@ -35,10 +24,9 @@ public class LejemaalFileRepository : ILejemaalRepository
     ///     lejlighednummer: int
     ///     kvadratmeter: double
     ///     antal rum: double
-    ///     Data eksempel fra filen: 3, 20.5, 4.5
+    ///     Data eksempel fra filen: "3", "20.5", "4.5"
     /// </summary>
-    /// <param name="lejemaalDataFilename"></param>
-    /// <returns>Ejendommens kvadratmeter</returns>
+    /// <returns>Ejendommens lejemål</returns>
     public IEnumerable<Lejemaal> HentLejemaal()
     {
         var lejemaalene = _fileWrapper.ReadAllLines(_lejemaalDataFilename);

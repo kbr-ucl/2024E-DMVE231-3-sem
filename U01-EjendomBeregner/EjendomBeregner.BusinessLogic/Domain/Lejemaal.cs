@@ -1,4 +1,4 @@
-﻿namespace EjendomBeregner.BusinessLogic;
+﻿namespace EjendomBeregner.BusinessLogic.Domain;
 
 /// <summary>
 ///     Domain model for lejemål

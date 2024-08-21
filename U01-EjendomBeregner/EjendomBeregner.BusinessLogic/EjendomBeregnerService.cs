@@ -1,17 +1,6 @@
-﻿namespace EjendomBeregner.BusinessLogic;
+﻿using EjendomBeregner.BusinessLogic.Infrastructure;
 
-
-/// <summary>
-///     Service interface for beregner service
-/// </summary>
-public interface IEjendomBeregnerService
-{
-    /// <summary>
-    ///     Beregner ejendommens kvadratmeter.
-    /// </summary>
-    /// <returns>Ejendommens kvadratmeter</returns>
-    double BeregnKvadratmeter();
-}
+namespace EjendomBeregner.BusinessLogic;
 
 /// <summary>
 ///     Application service der beregner ejendommens kvadratmeter.
