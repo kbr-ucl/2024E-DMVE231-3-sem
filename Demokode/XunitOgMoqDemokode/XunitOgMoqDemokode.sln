@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35209.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.XunitOgMoq.BusinessLogic", "Demo.XunitOgMoq.BusinessLogic\Demo.XunitOgMoq.BusinessLogic.csproj", "{1A1DB373-B954-4658-BE12-80F36763E5C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.XunitOgMoq.Test", "Demo.XunitOgMoq.Test\Demo.XunitOgMoq.Test.csproj", "{088CB182-2512-4AAE-8717-78C46DB64D47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A1DB373-B954-4658-BE12-80F36763E5C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A1DB373-B954-4658-BE12-80F36763E5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A1DB373-B954-4658-BE12-80F36763E5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A1DB373-B954-4658-BE12-80F36763E5C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088CB182-2512-4AAE-8717-78C46DB64D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088CB182-2512-4AAE-8717-78C46DB64D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088CB182-2512-4AAE-8717-78C46DB64D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088CB182-2512-4AAE-8717-78C46DB64D47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05F226FA-C3EF-4039-8790-AEC4CB98930D}
+	EndGlobalSection
+EndGlobal
