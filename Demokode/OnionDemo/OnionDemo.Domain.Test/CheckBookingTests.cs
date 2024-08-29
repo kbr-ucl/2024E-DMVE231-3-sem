@@ -25,7 +25,7 @@ namespace OnionDemo.Domain.Test
         }
 
         [Theory]
-        [MemberData(nameof(BookingTestDataWithOverlap))]
+        [MemberData(nameof(BookingTestDataWithNoOverlap))]
         public void Given_No_Booking_Overlap__Then_Returns_False(Booking booking, List<Booking> otherBookings)
         {
             // Arrange
@@ -62,6 +62,40 @@ namespace OnionDemo.Domain.Test
                     new DateOnly(2024, 8, 30),
                     new DateOnly(2024, 8, 31)), otherBookings
             ]; // Overlapper med booking 1
+
+            yield return
+            [
+                new FakeBooking(
+                    new DateOnly(2024, 8, 30),
+                    new DateOnly(2024, 8, 1)), otherBookings
+            ]; // Overlapper med booking 1 og 2
+
+        }
+
+        public static IEnumerable<object[]> BookingTestDataWithNoOverlap()
+        {
+            var otherBookings = CreateOtherBookings();
+
+            yield return
+            [
+                new FakeBooking(
+                    new DateOnly(2024, 8, 1),
+                    new DateOnly(2024, 8, 20)), otherBookings
+            ]; // Before
+
+            yield return
+            [
+                new FakeBooking(
+                    new DateOnly(2024, 9, 8),
+                    new DateOnly(2024, 9, 9)), otherBookings
+            ]; // Between
+
+            yield return
+            [
+                new FakeBooking(
+                    new DateOnly(2024, 10, 1),
+                    new DateOnly(2024, 10, 20)), otherBookings
+            ]; // After
 
             yield return
             [
