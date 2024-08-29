@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionDemo.Api", "OnionDemo.Api\OnionDemo.Api.csproj", "{132EC7C3-2F2E-45AE-A4E5-2003CC44D99A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionDemo.Application", "OnionDemo.Application\OnionDemo.Application.csproj", "{C8455C51-74C8-4E19-B794-BFDF29E94A75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionDemo.Domain", "OnionDemo.Domain\OnionDemo.Domain.csproj", "{E1330441-635D-45FD-8EB2-261B8C1AC686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionDemo.Domain.Test", "OnionDemo.Domain.Test\OnionDemo.Domain.Test.csproj", "{952F440E-EB86-40B1-86ED-F458E54BCC96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionDemo.Infrastructure", "OnionDemo.Infrastructure\OnionDemo.Infrastructure.csproj", "{8ED93C61-B797-4027-A3ED-90A5ADAEFBDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionDemo.DatabaseMigration", "OnionDemo.DatabaseMigration\OnionDemo.DatabaseMigration.csproj", "{9ADA7F35-8B2C-4212-B3F9-36D758502307}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{132EC7C3-2F2E-45AE-A4E5-2003CC44D99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132EC7C3-2F2E-45AE-A4E5-2003CC44D99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132EC7C3-2F2E-45AE-A4E5-2003CC44D99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132EC7C3-2F2E-45AE-A4E5-2003CC44D99A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8455C51-74C8-4E19-B794-BFDF29E94A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8455C51-74C8-4E19-B794-BFDF29E94A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8455C51-74C8-4E19-B794-BFDF29E94A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8455C51-74C8-4E19-B794-BFDF29E94A75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1330441-635D-45FD-8EB2-261B8C1AC686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1330441-635D-45FD-8EB2-261B8C1AC686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1330441-635D-45FD-8EB2-261B8C1AC686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1330441-635D-45FD-8EB2-261B8C1AC686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{952F440E-EB86-40B1-86ED-F458E54BCC96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{952F440E-EB86-40B1-86ED-F458E54BCC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{952F440E-EB86-40B1-86ED-F458E54BCC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{952F440E-EB86-40B1-86ED-F458E54BCC96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED93C61-B797-4027-A3ED-90A5ADAEFBDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED93C61-B797-4027-A3ED-90A5ADAEFBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED93C61-B797-4027-A3ED-90A5ADAEFBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED93C61-B797-4027-A3ED-90A5ADAEFBDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ADA7F35-8B2C-4212-B3F9-36D758502307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADA7F35-8B2C-4212-B3F9-36D758502307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADA7F35-8B2C-4212-B3F9-36D758502307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADA7F35-8B2C-4212-B3F9-36D758502307}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

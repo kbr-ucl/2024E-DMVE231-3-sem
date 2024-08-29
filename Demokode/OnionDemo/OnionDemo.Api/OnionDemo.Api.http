@@ -1,0 +1,6 @@
+@OnionDemo.Api_HostAddress = http://localhost:5293
+
+GET {{OnionDemo.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
