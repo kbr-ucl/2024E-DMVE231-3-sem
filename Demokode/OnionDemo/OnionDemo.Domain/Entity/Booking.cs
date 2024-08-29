@@ -9,32 +9,40 @@ public class Booking
     public DateOnly StartDate { get; protected set; }
     public DateOnly EndDate { get; protected set; }
 
+    protected Booking(){}
 
-    public static Booking Create(DateOnly startDate, DateOnly endDate, ICheckBooking checkBooking,
-        IEnumerable<Booking> otherBookings, DateOnly now)
+    private Booking(DateOnly startDate, DateOnly endDate, IBookingDomainService bookingDomainService)
     {
-        // StartDato skal være før EndDato
-        if (!(startDate < endDate)) throw new ArgumentException("StartDato skal være før EndDato");
+        AssureStartDateBeforeEndDate(startDate, endDate);
+        AssureBookingSkalVæreIFremtiden(startDate, DateOnly.FromDateTime(DateTime.Now));
 
-        AssureBookingSkalVæreIFremtiden(startDate, now);
+        StartDate = startDate;
+        EndDate = endDate;
 
-        var booking = new Booking
-        {
-            StartDate = startDate,
-            EndDate = endDate
-        };
+        AssureNoOverlapping(bookingDomainService.GetOtherBookings(this));
 
-        // Booking må ikke overlappe med en anden booking
-        if (checkBooking.IsOverlapping(booking, otherBookings))
-            throw new ArgumentException("Booking overlapper med en anden booking");
-
-        return booking;
     }
 
-    internal static void AssureBookingSkalVæreIFremtiden(DateOnly startDate, DateOnly now)
+    protected void AssureStartDateBeforeEndDate(DateOnly startDate, DateOnly endDate)
+    {
+        if (!(startDate < endDate)) throw new ArgumentException("StartDato skal være før EndDato");
+    }
+
+    public static Booking Create(DateOnly startDate, DateOnly endDate, IBookingDomainService bookingDomainService)
+    {
+        return new Booking(startDate, endDate, bookingDomainService);
+    }
+
+    protected void AssureBookingSkalVæreIFremtiden(DateOnly startDate, DateOnly now)
     {
         // Booking skal være i fremtiden
         if (startDate <= now)
             throw new ArgumentException("Booking skal være i fremtiden");
+    }
+
+    protected void AssureNoOverlapping(IEnumerable<Booking> otherBookings)
+    {
+        if (otherBookings.Any(b => b.StartDate <= EndDate && b.EndDate >= StartDate)) 
+            throw new Exception("Booking overlapper med en anden booking");
     }
 }

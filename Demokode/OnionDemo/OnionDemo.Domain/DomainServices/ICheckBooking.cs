@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace OnionDemo.Domain.DomainServices
 {
-    public interface ICheckBooking
+    public interface IBookingDomainService
     {
-        bool IsOverlapping(Booking booking, IEnumerable<Booking> otherBookings);
+        IEnumerable<Booking> GetOtherBookings(Booking booking);
+
     }
 
-    public class CheckBooking : ICheckBooking
+    public class CheckBooking : IBookingDomainService
     {
-        public bool IsOverlapping(Booking booking, IEnumerable<Booking> otherBookings)
+        public IEnumerable<Booking> GetOtherBookings(Booking booking)
         {
-            // throw new NotImplementedException("IsOverlapping not implemented yet");
-            return true;
+            throw new NotImplementedException();
         }
     }
 }

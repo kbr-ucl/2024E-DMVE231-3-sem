@@ -12,30 +12,25 @@ namespace OnionDemo.Domain.Test
     {
         [Theory]
         [MemberData(nameof(BookingTestDataWithOverlap))]
-        public void Given_Booking_Overlap__Then_Returns_True(Booking booking, List<Booking> otherBookings)
+        public void Given_Booking_Overlap__Then_Throw_Exception(Booking booking, List<Booking> otherBookings)
         {
             // Arrange
-            var sut = new CheckBooking();
+            var sut = new FakeBooking(booking.StartDate, booking.EndDate);
 
-            // Act
-            var result = sut.IsOverlapping(booking, otherBookings);
+            // Act & Assert
 
-            // Assert
-            Assert.True(result);
+            Assert.Throws<Exception>(() => sut.AssureNoOverlapping(otherBookings));
         }
 
         [Theory]
         [MemberData(nameof(BookingTestDataWithNoOverlap))]
-        public void Given_No_Booking_Overlap__Then_Returns_False(Booking booking, List<Booking> otherBookings)
+        public void Given_No_Booking_Overlap__Then_Returns_Void(Booking booking, List<Booking> otherBookings)
         {
             // Arrange
-            var sut = new CheckBooking();
+            var sut = new FakeBooking(booking.StartDate, booking.EndDate);
 
-            // Act
-            var result = sut.IsOverlapping(booking, otherBookings);
-
-            // Assert
-            Assert.False(result);
+            // Act & Assert
+            sut.AssureNoOverlapping(otherBookings);
         }
 
         public static IEnumerable<object[]> BookingTestDataWithOverlap()
