@@ -1,6 +1,6 @@
 ﻿using OnionDemo.Domain.Entity;
 
-namespace OnionDemo.Domain.Test.Fakes;
+namespace OnionDemo.Domain.Test.BookingTests.Fakes;
 
 public class FakeBooking : Booking
 {
@@ -13,5 +13,15 @@ public class FakeBooking : Booking
     public new void AssureNoOverlapping(IEnumerable<Booking> otherBookings)
     {
         base.AssureNoOverlapping(otherBookings);
+    }
+
+    public new void AssureStartDateBeforeEndDate()
+    {
+        base.AssureStartDateBeforeEndDate();
+    }
+
+    public new void AssureBookingSkalVæreIFremtiden(DateOnly now)
+    {
+        base.AssureBookingSkalVæreIFremtiden(now);
     }
 }
