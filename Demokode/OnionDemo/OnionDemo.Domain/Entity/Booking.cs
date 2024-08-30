@@ -5,8 +5,6 @@ namespace OnionDemo.Domain.Entity;
 public class Booking
 {
     public int Id { get; protected set; }
-    {
-    }
 
     protected Booking(){}
 
