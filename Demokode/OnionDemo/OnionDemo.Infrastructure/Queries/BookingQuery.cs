@@ -19,7 +19,8 @@ public class BookingQuery : IBookingQuery
         {
             Id = booking.Id,
             StartDate = booking.StartDate,
-            EndDate = booking.EndDate
+            EndDate = booking.EndDate,
+            RowVersion = booking.RowVersion
         };
     }
 

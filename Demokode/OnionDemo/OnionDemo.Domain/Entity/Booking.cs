@@ -1,4 +1,5 @@
-﻿using OnionDemo.Domain.DomainServices;
+﻿using System.ComponentModel.DataAnnotations;
+using OnionDemo.Domain.DomainServices;
 
 namespace OnionDemo.Domain.Entity;
 
@@ -20,6 +21,9 @@ public class Booking
 
     public DateOnly StartDate { get; protected set; }
     public DateOnly EndDate { get; protected set; }
+
+    [Timestamp]
+    public byte[] RowVersion { get; protected set; }
 
     protected void AssureStartDateBeforeEndDate()
     {
