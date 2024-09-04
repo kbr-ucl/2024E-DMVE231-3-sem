@@ -54,4 +54,14 @@ public class Booking
     {
         return new Booking(startDate, endDate, bookingDomainService);
     }
+
+    public void Update(DateOnly startDate, DateOnly endDate, IBookingDomainService domainService)
+    {
+        StartDate = startDate;
+        EndDate = endDate;
+
+        AssureStartDateBeforeEndDate();
+        AssureBookingSkalVæreIFremtiden(DateOnly.FromDateTime(DateTime.Now));
+        AssureNoOverlapping(domainService.GetOtherBookings(this));
+    }
 }

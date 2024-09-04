@@ -26,5 +26,10 @@ namespace OnionDemo.Infrastructure
         {
             return _db.Bookings.Single(a => a.Id == id);
         }
+
+        void IBookingRepository.UpdateBooking(Booking booking)
+        {
+            _db.SaveChanges();
+        }
     }
 }
