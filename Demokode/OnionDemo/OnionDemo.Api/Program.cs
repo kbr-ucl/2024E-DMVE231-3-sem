@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using OnionDemo.Application;
+using OnionDemo.Application.Command;
+using OnionDemo.Application.Query;
+using OnionDemo.Domain.DomainServices;
 using OnionDemo.Infrastructure;
+using OnionDemo.Infrastructure.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IBookingCommand, BookingCommand>();
+builder.Services.AddScoped<IBookingQuery, BookingQuery>();
+builder.Services.AddScoped<IBookingDomainService, BookingDomainService>();
 
 // Database
 // https://github.com/dotnet/SqlClient/issues/2239

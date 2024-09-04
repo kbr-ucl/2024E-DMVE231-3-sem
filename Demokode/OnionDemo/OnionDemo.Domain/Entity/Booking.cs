@@ -3,9 +3,17 @@ using OnionDemo.Domain.DomainServices;
 
 namespace OnionDemo.Domain.Entity;
 
-public class Booking
+public abstract class DomainEntity
 {
     public int Id { get; protected set; }
+    [Timestamp]
+    public byte[] RowVersion { get; protected set; }
+}
+
+
+public class Booking : DomainEntity
+{
+
 
     protected Booking(){}
 
@@ -22,8 +30,7 @@ public class Booking
     public DateOnly StartDate { get; protected set; }
     public DateOnly EndDate { get; protected set; }
 
-    [Timestamp]
-    public byte[] RowVersion { get; protected set; }
+
 
     protected void AssureStartDateBeforeEndDate()
     {
