@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using RazorDemo.WeatherService;
 
 namespace RazorDemo.Database
 {
@@ -9,6 +10,7 @@ namespace RazorDemo.Database
         {
         }
         public DbSet<Person> People { get; set; }
+        // public DbSet<WeatherForecastDto> WeatherForecasts { get; set; }
     }
 
     public class Person

@@ -1,0 +1,45 @@
+﻿@page
+@model RazorDemo.Pages.Weather.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WeatherForecastDto[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeatherForecastDto[0].TemperatureC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeatherForecastDto[0].Summary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.WeatherForecastDto) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TemperatureC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
