@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35309.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketChatter.Server", "SocketChatter.Server\SocketChatter.Server.csproj", "{F14B2ED7-08FF-4068-826B-A4B41911CD51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketChatter.Client", "SocketChatter.Client\SocketChatter.Client.csproj", "{C5F0AC84-A27A-4AE5-BFBA-9A877DA6014B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F14B2ED7-08FF-4068-826B-A4B41911CD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14B2ED7-08FF-4068-826B-A4B41911CD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14B2ED7-08FF-4068-826B-A4B41911CD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14B2ED7-08FF-4068-826B-A4B41911CD51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5F0AC84-A27A-4AE5-BFBA-9A877DA6014B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F0AC84-A27A-4AE5-BFBA-9A877DA6014B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F0AC84-A27A-4AE5-BFBA-9A877DA6014B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F0AC84-A27A-4AE5-BFBA-9A877DA6014B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05DBC472-184F-4C90-82D0-7B695824FB4A}
+	EndGlobalSection
+EndGlobal
