@@ -1,15 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using OnionDemo.Domain.DomainServices;
+﻿using OnionDemo.Domain.DomainServices;
 
 namespace OnionDemo.Domain.Entity;
-
-public abstract class DomainEntity
-{
-    public int Id { get; protected set; }
-    [Timestamp]
-    public byte[] RowVersion { get; protected set; } = null!;
-}
-
 
 public class Booking : DomainEntity
 {
@@ -17,19 +8,18 @@ public class Booking : DomainEntity
 
     protected Booking(){}
 
-    private Booking(DateOnly startDate, DateOnly endDate, IBookingDomainService bookingDomainService)
+    private Booking(DateOnly startDate, DateOnly endDate, IEnumerable<Booking> exsistingBookings)
     {
         StartDate = startDate;
         EndDate = endDate;
 
         AssureStartDateBeforeEndDate();
         AssureBookingSkalVæreIFremtiden(DateOnly.FromDateTime(DateTime.Now));
-        AssureNoOverlapping(bookingDomainService.GetOtherBookings(this));
+        AssureNoOverlapping(exsistingBookings);
     }
 
     public DateOnly StartDate { get; protected set; }
     public DateOnly EndDate { get; protected set; }
-
 
 
     protected void AssureStartDateBeforeEndDate()
@@ -59,20 +49,20 @@ public class Booking : DomainEntity
     /// </summary>
     /// <param name="startDate"></param>
     /// <param name="endDate"></param>
-    /// <param name="bookingDomainService"></param>
+    /// <param name="exsistingBookings"></param>
     /// <returns></returns>
-    public static Booking Create(DateOnly startDate, DateOnly endDate, IBookingDomainService bookingDomainService)
+    public static Booking Create(DateOnly startDate, DateOnly endDate, IEnumerable<Booking> exsistingBookings)
     {
-        return new Booking(startDate, endDate, bookingDomainService);
+        return new Booking(startDate, endDate, exsistingBookings);
     }
 
-    public void Update(DateOnly startDate, DateOnly endDate, IBookingDomainService domainService)
+    public void Update(DateOnly startDate, DateOnly endDate, IEnumerable<Booking> exsistingBookings)
     {
         StartDate = startDate;
         EndDate = endDate;
 
         AssureStartDateBeforeEndDate();
         AssureBookingSkalVæreIFremtiden(DateOnly.FromDateTime(DateTime.Now));
-        AssureNoOverlapping(domainService.GetOtherBookings(this));
+        AssureNoOverlapping(exsistingBookings);
     }
 }
