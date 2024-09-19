@@ -4,5 +4,5 @@ namespace OnionDemo.Application.Query;
 
 public interface IHostQuery
 {
-    IEnumerable<AccommodationDto> GetAccommodations(int hostId);
+    HostDto? GetAccommodations(int hostId);
 }

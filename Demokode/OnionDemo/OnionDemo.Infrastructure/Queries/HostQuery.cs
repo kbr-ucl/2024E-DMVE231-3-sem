@@ -12,12 +12,30 @@ public class HostQuery : IHostQuery
     {
         _db = db;
     }
-    IEnumerable<AccommodationDto> IHostQuery.GetAccommodations(int hostId)
+
+    HostDto? IHostQuery.GetAccommodations(int hostId)
     {
-        //var host = _db.Hosts
-        //.Include(a => a.Accommodations)
-        //.ThenInclude(b => b.Bookings)
-        //.FirstOrDefault(h => h.Id == hostId);
-        return new List<AccommodationDto>();
+        var host = _db.Hosts
+            .Include(a => a.Accommodations)
+            .ThenInclude(b => b.Bookings)
+            .FirstOrDefault(h => h.Id == hostId);
+
+        if (host == null) return null;
+
+        return new HostDto
+        {
+            Id = host.Id,
+            Accommodations = host.Accommodations.Select(a => new AccommodationDto
+            {
+                Id = a.Id,
+                Bookings = a.Bookings.Select(b => new BookingDto
+                {
+                    Id = b.Id,
+                    StartDate = b.StartDate,
+                    EndDate = b.EndDate,
+                    RowVersion = b.RowVersion
+                })
+            })
+        };
     }
 }

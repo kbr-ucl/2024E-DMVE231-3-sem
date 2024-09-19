@@ -54,6 +54,9 @@ namespace OnionDemo.DatabaseMigration.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("AccommodationId")
+                        .HasColumnType("int");
+
                     b.Property<DateOnly>("EndDate")
                         .HasColumnType("date");
 
@@ -68,6 +71,8 @@ namespace OnionDemo.DatabaseMigration.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccommodationId");
+
                     b.ToTable("Bookings");
                 });
 
@@ -78,6 +83,10 @@ namespace OnionDemo.DatabaseMigration.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -93,12 +102,29 @@ namespace OnionDemo.DatabaseMigration.Migrations
             modelBuilder.Entity("OnionDemo.Domain.Entity.Accommodation", b =>
                 {
                     b.HasOne("OnionDemo.Domain.Entity.Host", "Host")
-                        .WithMany()
+                        .WithMany("Accommodations")
                         .HasForeignKey("HostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Host");
+                });
+
+            modelBuilder.Entity("OnionDemo.Domain.Entity.Booking", b =>
+                {
+                    b.HasOne("OnionDemo.Domain.Entity.Accommodation", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("AccommodationId");
+                });
+
+            modelBuilder.Entity("OnionDemo.Domain.Entity.Accommodation", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("OnionDemo.Domain.Entity.Host", b =>
+                {
+                    b.Navigation("Accommodations");
                 });
 #pragma warning restore 612, 618
         }
