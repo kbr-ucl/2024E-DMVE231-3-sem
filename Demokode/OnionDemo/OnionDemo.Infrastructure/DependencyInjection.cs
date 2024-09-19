@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using OnionDemo.Application;
 using OnionDemo.Application.Helpers;
 using OnionDemo.Application.Query;
-using OnionDemo.Domain.DomainServices;
 using OnionDemo.Infrastructure.Queries;
 
 namespace OnionDemo.Infrastructure;
@@ -14,8 +13,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IBookingQuery, BookingQuery>();
-        services.AddScoped<IBookingDomainService, BookingDomainService>();
-        services.AddScoped<IBookingRepository, BookingRepository>();
+        services.AddScoped<IAccommodationRepository, AccommodationRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork<BookMyHomeContext>>();
 
         // Database

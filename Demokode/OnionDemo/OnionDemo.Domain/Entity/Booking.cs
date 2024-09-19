@@ -1,12 +1,10 @@
-﻿using OnionDemo.Domain.DomainServices;
-
-namespace OnionDemo.Domain.Entity;
+﻿namespace OnionDemo.Domain.Entity;
 
 public class Booking : DomainEntity
 {
-
-
-    protected Booking(){}
+    protected Booking()
+    {
+    }
 
     private Booking(DateOnly startDate, DateOnly endDate, IEnumerable<Booking> exsistingBookings)
     {

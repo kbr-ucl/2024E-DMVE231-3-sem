@@ -9,9 +9,8 @@ namespace OnionDemo.Application
 {
     public interface IAccommodationRepository
     {
-        Accommodation GetBooking(int id);
-        void AddBooking(Accommodation booking);
-        void UpdateBooking(Accommodation booking, byte[] rowversion);
-        Accommodation GetAccommodation(int accommodationId);
+        Accommodation GetAccommodation(int id);
+        void AddBooking(Accommodation accommodation);
+        void UpdateBooking(Booking booking, byte[] rowversion);
     }
 }

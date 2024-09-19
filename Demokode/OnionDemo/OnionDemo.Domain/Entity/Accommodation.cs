@@ -1,17 +1,19 @@
-﻿using OnionDemo.Domain.DomainServices;
-
-namespace OnionDemo.Domain.Entity;
+﻿namespace OnionDemo.Domain.Entity;
 
 public class Accommodation : DomainEntity
 {
-    protected List<Booking> Bookings { get; set; }
-    public Host Host { get; protected set; }
+    protected Accommodation()
+    {
+    }
 
     protected Accommodation(Host host)
     {
         Bookings = [];
         Host = host;
     }
+
+    protected List<Booking> Bookings { get; set; }
+    public Host Host { get; protected set; }
 
     public IEnumerable<Booking> GetBookings()
     {
@@ -29,10 +31,11 @@ public class Accommodation : DomainEntity
         Bookings.Add(booking);
     }
 
-    public void UpdateBooking(int bookingId, DateOnly startDate, DateOnly endDate)
+    public Booking UpdateBooking(int bookingId, DateOnly startDate, DateOnly endDate)
     {
         var booking = Bookings.FirstOrDefault(b => b.Id == bookingId);
         if (booking == null) throw new ArgumentException("Booking not found");
         booking.Update(startDate, endDate, GetBookings());
+        return booking;
     }
 }

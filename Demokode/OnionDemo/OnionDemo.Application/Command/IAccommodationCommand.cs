@@ -5,5 +5,6 @@ namespace OnionDemo.Application.Command
     public interface IAccommodationCommand
     {
         void CreateBooking(CreateBookingDto bookingDto);
+        void UpdateBooking(UpdateBookingDto updateBookingDto);
     }
 }
