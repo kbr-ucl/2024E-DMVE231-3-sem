@@ -6,5 +6,5 @@ public class UpdateBookingDto
     public DateOnly StartDate { get; set; }
     public DateOnly EndDate { get; set; }
     public byte[] RowVersion { get; set; } = null!;
-    public int AccommodationId { get; internal set; }
+    public int AccommodationId { get; set; }
 }

@@ -28,6 +28,7 @@ public class HostQuery : IHostQuery
             Accommodations = host.Accommodations.Select(a => new AccommodationDto
             {
                 Id = a.Id,
+                HostId = a.Host.Id,
                 Bookings = a.Bookings.Select(b => new BookingDto
                 {
                     Id = b.Id,

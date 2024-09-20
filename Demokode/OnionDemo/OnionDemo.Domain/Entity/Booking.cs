@@ -33,8 +33,9 @@ public class Booking : DomainEntity
             throw new ArgumentException("Booking skal være i fremtiden");
     }
 
-    protected void AssureNoOverlapping(IEnumerable<Booking> otherBookings)
+    protected void AssureNoOverlapping(IEnumerable<Booking> exsistingBookings)
     {
+        var otherBookings = exsistingBookings.Except(new []{this});
         if (otherBookings.Any(other =>
                 (EndDate <= other.EndDate && EndDate >= other.StartDate) ||
                 (StartDate >= other.StartDate && StartDate <= other.EndDate) ||

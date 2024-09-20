@@ -10,7 +10,7 @@ namespace OnionDemo.Application.Query
 {
     public interface IBookingQuery
     {
-        BookingDto GetBooking(int id);
-        IEnumerable<BookingDto> GetBookings();
+        BookingDto GetBooking(int accommodationId, int bookingId);
+        IEnumerable<BookingDto> GetBookings(int accommodationId);
     }
 }

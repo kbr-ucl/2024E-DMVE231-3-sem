@@ -13,25 +13,31 @@ public class BookingQuery : IBookingQuery
         _db = db;
     }
 
-    BookingDto IBookingQuery.GetBooking(int id)
+    BookingDto IBookingQuery.GetBooking(int accommodationId, int bookingId)
     {
-        var booking = _db.Bookings.AsNoTracking().Single(a => a.Id == id);
+        var accomodation = _db.Accommodations.Include(b => b.Bookings).AsNoTracking().Single(a => a.Id == accommodationId);
+        var booking = accomodation.Bookings.Single(b => b.Id == bookingId);
+
         return new BookingDto
         {
             Id = booking.Id,
             StartDate = booking.StartDate,
             EndDate = booking.EndDate,
+            AccommodationId = accomodation.Id,
             RowVersion = booking.RowVersion
         };
     }
 
-    IEnumerable<BookingDto> IBookingQuery.GetBookings()
+
+    IEnumerable<BookingDto> IBookingQuery.GetBookings(int accommodationId)
     {
+        var accomodation = _db.Accommodations.Include(b => b.Bookings).AsNoTracking().Single(a => a.Id == accommodationId);
         var result = _db.Bookings.AsNoTracking().Select(a => new BookingDto
         {
             Id = a.Id,
             StartDate = a.StartDate,
-            EndDate = a.EndDate, 
+            EndDate = a.EndDate,
+            AccommodationId = accomodation.Id,
             RowVersion = a.RowVersion
         });
         return result;

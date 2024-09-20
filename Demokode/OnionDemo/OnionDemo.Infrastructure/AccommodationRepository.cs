@@ -1,4 +1,5 @@
-﻿using OnionDemo.Application;
+﻿using Microsoft.EntityFrameworkCore;
+using OnionDemo.Application;
 using OnionDemo.Domain.Entity;
 
 namespace OnionDemo.Infrastructure;
@@ -12,6 +13,12 @@ public class AccommodationRepository : IAccommodationRepository
         _db = context;
     }
 
+    public void Add(Accommodation accommodation)
+    {
+        _db.Accommodations.Add(accommodation);
+        _db.SaveChanges();
+    }
+
     void IAccommodationRepository.AddBooking(Accommodation accommodation)
     {
         _db.SaveChanges();
@@ -19,7 +26,7 @@ public class AccommodationRepository : IAccommodationRepository
 
     Accommodation IAccommodationRepository.GetAccommodation(int id)
     {
-        return _db.Accommodations.Single(a => a.Id == id);
+        return _db.Accommodations.Include(a => a.Bookings).Single(a => a.Id == id);
     }
 
     void IAccommodationRepository.UpdateBooking(Booking booking, byte[] rowversion)

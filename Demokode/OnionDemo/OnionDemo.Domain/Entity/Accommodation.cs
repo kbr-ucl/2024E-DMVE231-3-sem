@@ -4,7 +4,7 @@ namespace OnionDemo.Domain.Entity;
 
 public class Accommodation : DomainEntity
 {
-    private readonly List<Booking>? _bookings;
+    private readonly List<Booking> _bookings = new List<Booking>();
 
 
     protected Accommodation()
@@ -18,7 +18,7 @@ public class Accommodation : DomainEntity
 
     public Host Host { get; protected set; }
     
-    public IReadOnlyCollection<Booking> Bookings => _bookings ?? new List<Booking>();
+    public IReadOnlyCollection<Booking> Bookings => _bookings;
 
     public static Accommodation Create(Host host)
     {

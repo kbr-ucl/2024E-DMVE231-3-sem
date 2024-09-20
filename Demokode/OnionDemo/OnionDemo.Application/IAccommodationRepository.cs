@@ -12,5 +12,6 @@ namespace OnionDemo.Application
         Accommodation GetAccommodation(int id);
         void AddBooking(Accommodation accommodation);
         void UpdateBooking(Booking booking, byte[] rowversion);
+        void Add(Accommodation accommodation);
     }
 }
