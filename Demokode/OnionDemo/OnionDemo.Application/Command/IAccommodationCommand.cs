@@ -10,5 +10,6 @@ namespace OnionDemo.Application.Command
         void CreateBooking(CreateBookingDto bookingDto);
         void UpdateBooking(UpdateBookingDto updateBookingDto);
         void DeleteBooking(DeleteBookingDto deleteBookingDto);
+        void SetReviewAndRating(ReviewAndRatingDto reviewAndRatingDto);
     }
 }

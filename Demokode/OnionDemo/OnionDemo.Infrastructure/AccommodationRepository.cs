@@ -19,6 +19,11 @@ public class AccommodationRepository : IAccommodationRepository
         _db.SaveChanges();
     }
 
+    void IAccommodationRepository.Add(Accommodation accommodation)
+    {
+        throw new NotImplementedException();
+    }
+
     void IAccommodationRepository.AddBooking(Accommodation accommodation)
     {
         _db.SaveChanges();
@@ -28,6 +33,7 @@ public class AccommodationRepository : IAccommodationRepository
     {
         return _db.Accommodations.Include(a => a.Bookings).Single(a => a.Id == id);
     }
+
 
     void IAccommodationRepository.UpdateBooking(Booking booking, byte[] rowversion)
     {

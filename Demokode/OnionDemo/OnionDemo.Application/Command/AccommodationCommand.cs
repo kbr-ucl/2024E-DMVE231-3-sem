@@ -2,6 +2,7 @@
 using OnionDemo.Application.Helpers;
 using OnionDemo.Application.Query.QueryDto;
 using OnionDemo.Domain.Entity;
+using OnionDemo.Domain.Values;
 
 namespace OnionDemo.Application.Command;
 
@@ -103,5 +104,17 @@ public class AccommodationCommand : IAccommodationCommand
     void IAccommodationCommand.DeleteBooking(DeleteBookingDto deleteBookingDto)
     {
         throw new NotImplementedException();
+    }
+
+    void IAccommodationCommand.SetReviewAndRating(ReviewAndRatingDto reviewAndRatingDto)
+    {
+        // Load
+        Accommodation accommodation = _repository.GetAccommodation(reviewAndRatingDto.AccommodationId);
+        // Do
+
+        var booking = accommodation.SetReviewAndRating(reviewAndRatingDto.BokingId, new ReviewAndRating(reviewAndRatingDto.Review, reviewAndRatingDto.Rating));
+
+        // Save
+        _repository.UpdateBooking(booking, reviewAndRatingDto.RowVersion);
     }
 }

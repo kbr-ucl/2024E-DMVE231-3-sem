@@ -1,4 +1,6 @@
-﻿namespace OnionDemo.Domain.Entity;
+﻿using OnionDemo.Domain.Values;
+
+namespace OnionDemo.Domain.Entity;
 
 public class Booking : DomainEntity
 {
@@ -18,6 +20,7 @@ public class Booking : DomainEntity
 
     public DateOnly StartDate { get; protected set; }
     public DateOnly EndDate { get; protected set; }
+    public ReviewAndRating ReviewAndRating { get; protected set; } = null!;
 
 
     protected void AssureStartDateBeforeEndDate()
@@ -63,5 +66,10 @@ public class Booking : DomainEntity
         AssureStartDateBeforeEndDate();
         AssureBookingSkalVæreIFremtiden(DateOnly.FromDateTime(DateTime.Now));
         AssureNoOverlapping(exsistingBookings);
+    }
+
+    public void SetReviewAndRating(ReviewAndRating reviewAndRating)
+    {
+        ReviewAndRating = reviewAndRating;
     }
 }

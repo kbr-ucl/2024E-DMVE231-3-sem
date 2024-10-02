@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using OnionDemo.Domain.Values;
 
 namespace OnionDemo.Domain.Entity;
 
@@ -36,6 +37,14 @@ public class Accommodation : DomainEntity
         var booking = Bookings.FirstOrDefault(b => b.Id == bookingId);
         if (booking == null) throw new ArgumentException("Booking not found");
         booking.Update(startDate, endDate, Bookings);
+        return booking;
+    }
+
+    public Booking SetReviewAndRating(int bookingId, ReviewAndRating reviewAndRating)
+    {
+        var booking = Bookings.FirstOrDefault(b => b.Id == bookingId);
+        if (booking == null) throw new ArgumentException("Booking not found");
+        booking.SetReviewAndRating(reviewAndRating);
         return booking;
     }
 }
