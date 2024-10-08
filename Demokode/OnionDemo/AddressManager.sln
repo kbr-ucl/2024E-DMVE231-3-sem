@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManager.Api", "AddressManager.Api\AddressManager.Api.csproj", "{DDF8E7FC-D000-4E2F-8C8D-5F00A76734A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManager.Application", "AddressManager.Application\AddressManager.Application.csproj", "{B6685283-1935-471E-BEEB-B46E5CE0F872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManager.Domain", "AddressManager.Domain\AddressManager.Domain.csproj", "{E97C45A4-E014-41EF-925A-65BFFB832346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManager.Domain.Test", "AddressManager.Domain.Test\AddressManager.Domain.Test.csproj", "{5D9AFB29-3A6E-4297-99BF-D1691A77A3D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManager.Infrastructure", "AddressManager.Infrastructure\AddressManager.Infrastructure.csproj", "{237B2834-C8CF-406C-A341-41F5359A1325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManager.DatabaseMigration", "AddressManager.DatabaseMigration\AddressManager.DatabaseMigration.csproj", "{EA24E56D-806B-403E-AF9F-55BB2D96B754}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDF8E7FC-D000-4E2F-8C8D-5F00A76734A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF8E7FC-D000-4E2F-8C8D-5F00A76734A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF8E7FC-D000-4E2F-8C8D-5F00A76734A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF8E7FC-D000-4E2F-8C8D-5F00A76734A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6685283-1935-471E-BEEB-B46E5CE0F872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6685283-1935-471E-BEEB-B46E5CE0F872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6685283-1935-471E-BEEB-B46E5CE0F872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6685283-1935-471E-BEEB-B46E5CE0F872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E97C45A4-E014-41EF-925A-65BFFB832346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E97C45A4-E014-41EF-925A-65BFFB832346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E97C45A4-E014-41EF-925A-65BFFB832346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E97C45A4-E014-41EF-925A-65BFFB832346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D9AFB29-3A6E-4297-99BF-D1691A77A3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D9AFB29-3A6E-4297-99BF-D1691A77A3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D9AFB29-3A6E-4297-99BF-D1691A77A3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D9AFB29-3A6E-4297-99BF-D1691A77A3D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237B2834-C8CF-406C-A341-41F5359A1325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237B2834-C8CF-406C-A341-41F5359A1325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237B2834-C8CF-406C-A341-41F5359A1325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237B2834-C8CF-406C-A341-41F5359A1325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA24E56D-806B-403E-AF9F-55BB2D96B754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA24E56D-806B-403E-AF9F-55BB2D96B754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA24E56D-806B-403E-AF9F-55BB2D96B754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA24E56D-806B-403E-AF9F-55BB2D96B754}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

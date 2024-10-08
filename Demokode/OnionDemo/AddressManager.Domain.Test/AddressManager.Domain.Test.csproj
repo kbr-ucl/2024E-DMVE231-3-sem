@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnionDemo.Domain\OnionDemo.Domain.csproj" />
+    <ProjectReference Include="..\AddressManager.Domain\AddressManager.Domain.csproj" />
   </ItemGroup>
 
 </Project>
