@@ -2,7 +2,7 @@
 
 public interface IValidateAddressDomainService
 {
-    DawaValidationRespose ValidateAddress(string street, string city, string zipCode);
+    AddressValidationResult ValidateAddress(string street, string city, string zipCode);
 }
 
-public record DawaValidationRespose(bool IsValid, string DawaId);
+public record AddressValidationResult(bool IsValid, string DawaId);

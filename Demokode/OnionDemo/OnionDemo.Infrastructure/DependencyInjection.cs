@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnionDemo.Application;
 using OnionDemo.Application.Helpers;
 using OnionDemo.Application.Query;
+using OnionDemo.Domain.DomainServices;
+using OnionDemo.Infrastructure.ExternalServices;
+using OnionDemo.Infrastructure.ExternalServices.ServiceProxy;
 using OnionDemo.Infrastructure.Queries;
 
 namespace OnionDemo.Infrastructure;
@@ -17,6 +21,16 @@ public static class DependencyInjection
         services.AddScoped<IAccommodationRepository, AccommodationRepository>();
         services.AddScoped<IHostRepository, HostRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork<BookMyHomeContext>>();
+        services.AddScoped<IValidateAddressDomainService, IValidateAddressDomainService>();
+
+        // External services
+        services.AddHttpClient<IAddressServiceProxy, AddressServiceProxy>(client =>
+        {
+            var uri = configuration.GetSection("ExternalServices:AddressService:Uri").Value;
+            Debug.Assert(String.Empty != null, "String.Empty != null");
+            client.BaseAddress = new Uri(uri ?? string.Empty);
+        });
+
 
         // Database
         // https://github.com/dotnet/SqlClient/issues/2239

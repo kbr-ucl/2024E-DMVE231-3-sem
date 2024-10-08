@@ -9,7 +9,7 @@ public record Address : ValueBase
     {
     }
 
-    private Address(string street, string city, string zipCode, DawaValidationRespose dawaValidationRespose)
+    private Address(string street, string city, string zipCode, AddressValidationResult dawaValidationRespose)
     {
         Street = street;
         City = city;
