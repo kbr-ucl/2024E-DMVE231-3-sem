@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace OnionDemo.Domain.Values;
 
-namespace OnionDemo.Domain.Values;
-
-[ComplexType]
-public record ReviewAndRating
+public record ReviewAndRating : ValueBase
 {
     protected ReviewAndRating()
     {
     }
+
     public ReviewAndRating(string review, int rating)
     {
         Review = review;

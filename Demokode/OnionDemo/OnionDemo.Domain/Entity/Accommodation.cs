@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Net.Sockets;
 using OnionDemo.Domain.Values;
 
 namespace OnionDemo.Domain.Entity;
@@ -18,7 +19,8 @@ public class Accommodation : DomainEntity
     }
 
     public Host Host { get; protected set; }
-    
+    public Address Address { get; protected set; }
+
     public IReadOnlyCollection<Booking> Bookings => _bookings;
 
     public static Accommodation Create(Host host)
