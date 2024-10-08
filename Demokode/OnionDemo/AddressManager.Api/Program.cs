@@ -16,29 +16,41 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.MapGet("/ping", () => { return Results.Ok("Ping reply"); });
+
+
+app.MapPost("/Address", (CreateAddressRequestDto address) =>
+    {
+        var response = new CreateAddressResponseDto(true, "1234");
+        return Results.Ok(response);
+    })
+    .WithOpenApi(config => new(config)
+    {
+        Summary = "Create a new address if DAWA validation is succefull",
+        Description =
+            "Create a new address in the system. Before the creation of the address the address is validated with a call to DAWA."
+    })
+    .Accepts<CreateAddressRequestDto>("application/json");
+
+app.MapGet("/Address", (string dawaId) =>
+    {
+        var response = new GetAddressResponseDto("StreetName", "Building", "ZipCode", "City", true, dawaId);
+        return Results.Ok(response);
+    })
+    .WithOpenApi(config => new(config)
+    {
+        Summary = "Create a new address if DAWA validation is succefull",
+        Description =
+            "Create a new address in the system. Before the creation of the address the address is validated with a call to DAWA."
+    })
+    .Accepts<CreateAddressRequestDto>("application/json");
+
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+public record CreateAddressRequestDto(string StreetName, string Building, string ZipCode);
+
+public record CreateAddressResponseDto(bool IsValid, string DawaId);
+
+public record GetAddressResponseDto(string StreetName, string Building, string ZipCode, string City, bool IsValid, string DawaId);
