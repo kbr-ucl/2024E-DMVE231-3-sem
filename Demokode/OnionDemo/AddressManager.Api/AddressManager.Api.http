@@ -1,6 +1,15 @@
-@AddressManager.Api_HostAddress = http://localhost:5030
+@AddressManager.Api_HostAddress = https://localhost:15031
 
 GET {{AddressManager.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+POST {{AddressManager.Api_HostAddress}}/Address/
+Content-Type: application/json
+
+{
+  "streetName": "Boulevarden",
+  "building": "25",
+  "zipCode": "7100",
+  "city": "Vejle"
+}

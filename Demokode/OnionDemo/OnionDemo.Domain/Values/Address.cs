@@ -37,8 +37,8 @@ public record Address : ValueBase
 
 public enum AddressValidationState
 {
-    NotValidated,
     Pending,
     Valid,
+    Uncertain,
     Invalid
 }
