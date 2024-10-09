@@ -12,8 +12,8 @@ public record AddressValidationRequestDto(string StreetName, string Building, st
 
 public enum AddressValidationStateDto
 {
-NotValidated,
-Pending,
-Valid,
-Invalid
+    Pending,
+    Valid,
+    Uncertain,
+    Invalid
 }
