@@ -11,5 +11,6 @@ namespace OnionDemo.Application.Command
         void UpdateBooking(UpdateBookingDto updateBookingDto);
         void DeleteBooking(DeleteBookingDto deleteBookingDto);
         void SetReviewAndRating(ReviewAndRatingDto reviewAndRatingDto);
+        void HandleAddressUpdate(AddressValidatedEventDto request);
     }
 }

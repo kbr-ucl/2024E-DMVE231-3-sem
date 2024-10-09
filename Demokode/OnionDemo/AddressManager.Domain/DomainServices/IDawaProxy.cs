@@ -12,5 +12,5 @@ public record GetDawaAddressResponse(
     HttpStatusCode StatusCode = HttpStatusCode.Accepted,
     string DawaReasonPhrase = "",
     bool AddressFound = false,
-    Guid Id = default,
+    Guid Id = default, // Changed to default to avoid CS1736 error
     string Kategori = "");

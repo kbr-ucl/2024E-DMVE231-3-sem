@@ -120,4 +120,29 @@ public class AccommodationCommand : IAccommodationCommand
         // Save
         _repository.UpdateBooking(booking, reviewAndRatingDto.RowVersion);
     }
+
+    void IAccommodationCommand.HandleAddressUpdate(AddressValidatedEventDto request)
+    {
+        Accommodation accommodation = _repository.GetAccommodationByDawaId(request.DawaId);
+        accommodation.UpdateAddressState(request.DawaId, Map(request.ValidationState));
+        _repository.Update(accommodation);
+    }
+
+    private AddressValidationState Map(AddressValidationStateDto validationState)
+    {
+        switch (validationState)
+        {
+            case AddressValidationStateDto.Valid:
+                return AddressValidationState.Valid;
+            case AddressValidationStateDto.Invalid:
+                return AddressValidationState.Invalid;
+            case AddressValidationStateDto.Pending:
+                return AddressValidationState.Pending;
+            case AddressValidationStateDto.Uncertain:
+                return AddressValidationState.Uncertain;
+            default: 
+                throw new ArgumentOutOfRangeException(nameof(validationState), validationState, null);
+
+        }
+    }
 }

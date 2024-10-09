@@ -1,4 +1,4 @@
-﻿using OnionDemo.Domain.Values;
+﻿using OnionDemo.Application.Command.CommandDto;
 
 namespace OnionDemo.Infrastructure.ExternalServices;
 
@@ -8,12 +8,5 @@ public interface IAddressServiceProxy
 }
 
 public record AddressValidationResultDto(string DawaId, AddressValidationStateDto state);
-public record AddressValidationRequestDto(string StreetName, string Building, string ZipCode);
 
-public enum AddressValidationStateDto
-{
-    Pending,
-    Valid,
-    Uncertain,
-    Invalid
-}
+public record AddressValidationRequestDto(string StreetName, string Building, string ZipCode);

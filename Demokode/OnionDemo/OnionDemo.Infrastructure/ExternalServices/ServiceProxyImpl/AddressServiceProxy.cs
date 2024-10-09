@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using OnionDemo.Application.Command.CommandDto;
 
 namespace OnionDemo.Infrastructure.ExternalServices.ServiceProxyImpl;
 

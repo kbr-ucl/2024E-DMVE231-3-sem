@@ -35,6 +35,16 @@ public class AccommodationRepository : IAccommodationRepository
         return _db.Accommodations.Include(a => a.Bookings).Single(a => a.Id == id);
     }
 
+    Accommodation IAccommodationRepository.GetAccommodationByDawaId(Guid dawaId)
+    {
+        return _db.Accommodations.Include(a => a.Bookings).First(a => a.Address.DawaId == dawaId.ToString());
+    }
+
+    void IAccommodationRepository.Update(Accommodation accommodation)
+    {
+        _db.SaveChanges();
+
+    }
 
     void IAccommodationRepository.UpdateBooking(Booking booking, byte[] rowversion)
     {

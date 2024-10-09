@@ -1,4 +1,6 @@
 ﻿using AddressManager.Domain.Values;
+using System.IO;
+using System.Reflection.Emit;
 
 namespace AddressManager.Domain.Entity;
 
@@ -30,5 +32,11 @@ public class Address : DomainEntity
         var dawaAddress = DawaAddress.Create(street, building, zipCode, city, ioc);
         var addressHashCode = AddressHashCode.Create(street, building, zipCode, city);
         return new Address(street, building, zipCode, city, dawaAddress, addressHashCode);
+    }
+
+    public void Validate(IServiceProvider ioc)
+    {
+        var dawaAddress = DawaAddress.Create(Street, Building, ZipCode, City, ioc);
+        DawaAddress = dawaAddress;
     }
 }

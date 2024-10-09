@@ -4,6 +4,7 @@ using OnionDemo.Application.Command;
 using OnionDemo.Application.Command.CommandDto;
 using OnionDemo.Application.Query;
 using OnionDemo.Infrastructure;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,4 +40,9 @@ app.MapPost("/accommodation",
 
 app.MapGet("/host/{id}/accommodation", (int id, IHostQuery query) => query.GetAccommodations(id));
 
+app.MapPost("/AddressHandler",
+    (AddressValidatedEventDto request, IAccommodationCommand command) => command.HandleAddressUpdate(request));
+
 app.Run();
+
+

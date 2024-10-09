@@ -1,5 +1,6 @@
 ﻿using AddressManager.Application.Command.CommandDto;
 using AddressManager.Domain.Entity;
+using AddressManager.Domain.Values;
 
 namespace AddressManager.Application.Command;
 
@@ -28,5 +29,16 @@ public class AddressCommand : IAddressCommand
         address = Address.Create(command.Street, command.Building, command.ZipCode, command.City, _ioc);
         _repository.Add(address);
         return address;
+    }
+
+    void IAddressCommand.ValidateAddress(int id)
+    {
+        var address = _repository.GetAddress(id);
+        address.Validate(_ioc);
+        _repository.Add(address);
+        if (address.DawaAddress.ValidationState != AddressValidationState.Pending)
+        {
+            
+        }
     }
 }

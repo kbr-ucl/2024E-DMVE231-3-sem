@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
 using AddressManager.Application.Command;
+using AddressManager.Application.Query;
 using AddressManager.Domain.DomainServices;
+using AddressManager.Infrastructure.ExternalServices;
 using AddressManager.Infrastructure.ExternalServices.ServiceProxyImpl;
+using AddressManager.Infrastructure.Queries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,11 +16,19 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IAddressRepository, AddressRepository>();
+        services.AddScoped<IAddressQuery, AddressQuery>();
 
         // External services
         services.AddHttpClient<IDawaProxy, DawaProxy>(client =>
         {
             var uri = configuration.GetSection("ExternalServices:Dawa:Uri").Value;
+            Debug.Assert(string.Empty != null, "String.Empty != null");
+            client.BaseAddress = new Uri(uri ?? string.Empty);
+        });
+
+        services.AddHttpClient<IBookMyHomeProxy, BookMyHomeProxy>(client =>
+        {
+            var uri = configuration.GetSection("ExternalServices:BookMyHome:Uri").Value;
             Debug.Assert(string.Empty != null, "String.Empty != null");
             client.BaseAddress = new Uri(uri ?? string.Empty);
         });

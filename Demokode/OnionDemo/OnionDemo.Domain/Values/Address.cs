@@ -33,6 +33,11 @@ public record Address : ValueBase
         var dawaValidationRespose = dawaService.ValidateAddress(street, building, city);
         return new Address(street, building, city, zipCode, dawaValidationRespose);
     }
+
+    public void UpdateValidationState(AddressValidationState validationState)
+    {
+       ValidationState = validationState;
+    }
 }
 
 public enum AddressValidationState

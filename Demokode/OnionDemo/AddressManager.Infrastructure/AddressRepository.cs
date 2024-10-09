@@ -1,6 +1,7 @@
 ﻿using AddressManager.Application.Command;
 using AddressManager.Domain.Entity;
 using AddressManager.Domain.Values;
+using System;
 
 namespace AddressManager.Infrastructure;
 
@@ -22,5 +23,10 @@ public class AddressRepository : IAddressRepository
     {
         var hashCode = AddressHashCode.Create(street, building, zipCode, city).HashCode;
         return _db.Addresses.FirstOrDefault(a => a.AddressHashCode.HashCode == hashCode);
+    }
+
+    Address IAddressRepository.GetAddress(int id)
+    {
+        return _db.Addresses.First(a => a.Id == id);
     }
 }

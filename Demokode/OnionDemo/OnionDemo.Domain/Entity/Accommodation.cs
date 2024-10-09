@@ -50,4 +50,9 @@ public class Accommodation : DomainEntity
         booking.SetReviewAndRating(reviewAndRating);
         return booking;
     }
+
+    public void UpdateAddressState(Guid requestDawaId, AddressValidationState validationState)
+    {
+        Address.UpdateValidationState(validationState);
+    }
 }

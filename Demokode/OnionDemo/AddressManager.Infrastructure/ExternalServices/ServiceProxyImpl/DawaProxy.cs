@@ -18,7 +18,7 @@ public class DawaProxy : IDawaProxy
 
         if (!dawaResponse.IsSuccessStatusCode)
         {
-            return new GetDawaAddressResponse(false, dawaResponse.StatusCode, dawaResponse.ReasonPhrase ?? "");
+            return new GetDawaAddressResponse(false, dawaResponse.StatusCode, dawaResponse.ReasonPhrase ?? "", Id:Guid.NewGuid());
         }
 
         var jsonResponse = await dawaResponse.Content.ReadAsStringAsync();
@@ -35,6 +35,6 @@ public class DawaProxy : IDawaProxy
             return new GetDawaAddressResponse(AddressFound:true, Id:dataId, Kategori:kategoriNode.ToString());
         };
 
-        return new GetDawaAddressResponse(false);
+        return new GetDawaAddressResponse(false, Id: Guid.NewGuid());
     }
 }

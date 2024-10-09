@@ -1,8 +1,10 @@
 using AddressManager.Application;
 using AddressManager.Application.Command;
 using AddressManager.Application.Command.CommandDto;
+using AddressManager.Application.Jobs;
 using AddressManager.Domain.Values;
 using AddressManager.Infrastructure;
+using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,29 @@ builder.Services.AddSwaggerGen();
 // Application and Infrastructure services
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// Add the required Quartz.NET services
+// https://www.quartz-scheduler.net/documentation/quartz-3.x/packages/hosted-services-integration.html#installation
+builder.Services.AddQuartz(q =>
+{
+    var jobKey = new JobKey("ValidatePendingAddressesJob");
+    q.AddJob<ValidatePendingAddressesJob>(jobKey);
+    q.AddTrigger(options =>
+    {
+        options.ForJob(jobKey)
+            .WithIdentity("ValidatePendingAddressesJob-trigger")
+            .WithCronSchedule("0 0/1 * 1/1 * ? *") // every minute
+            .WithDescription("Validate pending addresses job");
+    });
+});
+
+// Quartz.Extensions.Hosting hosting
+builder.Services.AddQuartzHostedService(options =>
+{
+    // when shutting down we want jobs to complete gracefully
+    options.WaitForJobsToComplete = true;
+});
+
 
 var app = builder.Build();
 
