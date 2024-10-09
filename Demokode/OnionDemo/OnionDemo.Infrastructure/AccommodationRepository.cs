@@ -21,7 +21,8 @@ public class AccommodationRepository : IAccommodationRepository
 
     void IAccommodationRepository.Add(Accommodation accommodation)
     {
-        throw new NotImplementedException();
+        _db.Accommodations.Add(accommodation);
+        _db.SaveChanges();
     }
 
     void IAccommodationRepository.AddBooking(Accommodation accommodation)

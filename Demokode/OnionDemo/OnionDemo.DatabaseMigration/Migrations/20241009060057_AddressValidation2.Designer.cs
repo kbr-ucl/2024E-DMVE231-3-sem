@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnionDemo.Infrastructure;
 
@@ -12,9 +13,11 @@ using OnionDemo.Infrastructure;
 namespace OnionDemo.DatabaseMigration.Migrations
 {
     [DbContext(typeof(BookMyHomeContext))]
-    partial class BookMyHomeContextModelSnapshot : ModelSnapshot
+    [Migration("20241009060057_AddressValidation2")]
+    partial class AddressValidation2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
