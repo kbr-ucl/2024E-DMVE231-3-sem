@@ -7,7 +7,7 @@ using OnionDemo.Application.Helpers;
 using OnionDemo.Application.Query;
 using OnionDemo.Domain.DomainServices;
 using OnionDemo.Infrastructure.ExternalServices;
-using OnionDemo.Infrastructure.ExternalServices.ServiceProxy;
+using OnionDemo.Infrastructure.ExternalServices.ServiceProxyImpl;
 using OnionDemo.Infrastructure.Queries;
 
 namespace OnionDemo.Infrastructure;
