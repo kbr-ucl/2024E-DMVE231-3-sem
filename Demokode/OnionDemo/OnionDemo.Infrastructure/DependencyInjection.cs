@@ -21,7 +21,7 @@ public static class DependencyInjection
         services.AddScoped<IAccommodationRepository, AccommodationRepository>();
         services.AddScoped<IHostRepository, HostRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork<BookMyHomeContext>>();
-        services.AddScoped<IValidateAddressDomainService, IValidateAddressDomainService>();
+        services.AddScoped<IValidateAddressDomainService, ValidateAddressDomainService>();
 
         // External services
         services.AddHttpClient<IAddressServiceProxy, AddressServiceProxy>(client =>
