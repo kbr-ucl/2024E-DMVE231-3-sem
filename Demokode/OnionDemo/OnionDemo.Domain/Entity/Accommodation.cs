@@ -13,9 +13,10 @@ public class Accommodation : DomainEntity
     {
     }
 
-    protected Accommodation(Host host)
+    protected Accommodation(Host host, Address address)
     {
         Host = host;
+        Address = address;
     }
 
     public Host Host { get; protected set; }
@@ -23,9 +24,9 @@ public class Accommodation : DomainEntity
 
     public IReadOnlyCollection<Booking> Bookings => _bookings;
 
-    public static Accommodation Create(Host host)
+    public static Accommodation Create(Host host, Address address)
     {
-        return new Accommodation(host);
+        return new Accommodation(host, address);
     }
 
     public void CreateBooking(DateOnly startDate, DateOnly endDate)

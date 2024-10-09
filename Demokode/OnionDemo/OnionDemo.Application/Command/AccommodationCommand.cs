@@ -10,19 +10,22 @@ public class AccommodationCommand : IAccommodationCommand
 {
     private readonly IAccommodationRepository _repository;
     private readonly IHostRepository _hostRepository;
+    private readonly IServiceProvider _serviceProvider;
     private readonly IUnitOfWork _uow;
 
-    public AccommodationCommand(IUnitOfWork uow, IAccommodationRepository repository, IHostRepository hostRepository)
+    public AccommodationCommand(IUnitOfWork uow, IAccommodationRepository repository, IHostRepository hostRepository, IServiceProvider serviceProvider)
     {
         _uow = uow;
         _repository = repository;
         _hostRepository = hostRepository;
+        _serviceProvider = serviceProvider;
     }
 
     void IAccommodationCommand.Create(CreateAccommodationDto createAccommodationDto)
     {
         var host = _hostRepository.Get(createAccommodationDto.HostId);
-        var accommodation = Accommodation.Create(host);
+        var address = Address.Create(createAccommodationDto.Street, createAccommodationDto.Building, createAccommodationDto.ZipCode, createAccommodationDto.City, _serviceProvider);
+        var accommodation = Accommodation.Create(host, address);
         _repository.Add(accommodation);
     }
 

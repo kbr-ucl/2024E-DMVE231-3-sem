@@ -11,10 +11,10 @@ public class AddressServiceProxy : IAddressServiceProxy
         _client = client;
     }
 
-    async Task<AddressValidationResultDto> IAddressServiceProxy.ValidateAddress(string street, string city,
+    async Task<AddressValidationResultDto> IAddressServiceProxy.ValidateAddress(string street, string building, 
         string zipCode)
     {
-        var requestDto = new AddressValidationRequestDto(street, city, zipCode);
+        var requestDto = new AddressValidationRequestDto(street, building, zipCode);
         var response = await _client.PostAsJsonAsync("/Address", requestDto);
         if (!response.IsSuccessStatusCode) return new AddressValidationResultDto(false, string.Empty);
         var result = await response.Content.ReadFromJsonAsync<AddressValidationResultDto>();
