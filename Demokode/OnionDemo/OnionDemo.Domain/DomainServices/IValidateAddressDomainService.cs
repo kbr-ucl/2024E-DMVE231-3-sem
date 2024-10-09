@@ -1,8 +1,10 @@
-﻿namespace OnionDemo.Domain.DomainServices;
+﻿using OnionDemo.Domain.Values;
+
+namespace OnionDemo.Domain.DomainServices;
 
 public interface IValidateAddressDomainService
 {
     AddressValidationResult ValidateAddress(string street, string city, string zipCode);
 }
 
-public record AddressValidationResult(bool IsValid, string DawaId);
+public record AddressValidationResult(string DawaId, AddressValidationState ValidationState);

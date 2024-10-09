@@ -22,7 +22,7 @@ app.MapGet("/ping", () => { return Results.Ok("Ping reply"); });
 
 app.MapPost("/Address", (CreateAddressRequestDto address) =>
     {
-        var response = new CreateAddressResponseDto(true, "1234");
+        var response = new CreateAddressResponseDto("1234", AddressValidationStateDto.Valid);
         return Results.Ok(response);
     })
     .WithOpenApi(config => new(config)
@@ -51,6 +51,14 @@ app.Run();
 
 public record CreateAddressRequestDto(string StreetName, string Building, string ZipCode);
 
-public record CreateAddressResponseDto(bool IsValid, string DawaId);
+public record CreateAddressResponseDto(string DawaId, AddressValidationStateDto ValidationState);
 
 public record GetAddressResponseDto(string StreetName, string Building, string ZipCode, string City, bool IsValid, string DawaId);
+
+public enum AddressValidationStateDto
+{
+    NotValidated,
+    Pending,
+    Valid,
+    Invalid
+}

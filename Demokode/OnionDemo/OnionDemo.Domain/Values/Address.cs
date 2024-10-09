@@ -14,15 +14,16 @@ public record Address : ValueBase
         Street = street;
         City = city;
         ZipCode = zipCode;
-        IsValid = dawaValidationRespose.IsValid;
+        ValidationState = dawaValidationRespose.ValidationState;
         DawaId = dawaValidationRespose.DawaId;
     }
 
     public string Street { get; private set; }
     public string City { get; private set; }
     public string ZipCode { get; private set; }
-    public bool IsValid { get; protected set; }
+    public bool IsValid => ValidationState == AddressValidationState.Valid || ValidationState == AddressValidationState.Pending;
     public string DawaId { get; protected set; }
+    public AddressValidationState ValidationState { get; protected set; }
 
     public static Address Create(string street, string city, string zipCode, IServiceProvider serviceProvider)
     {
@@ -30,4 +31,12 @@ public record Address : ValueBase
         var dawaValidationRespose = dawaService.ValidateAddress(street, city, zipCode);
         return new Address(street, city, zipCode, dawaValidationRespose);
     }
+}
+
+public enum AddressValidationState
+{
+    NotValidated,
+    Pending,
+    Valid,
+    Invalid
 }
