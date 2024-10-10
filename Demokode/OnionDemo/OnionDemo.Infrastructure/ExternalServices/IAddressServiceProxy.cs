@@ -4,9 +4,9 @@ namespace OnionDemo.Infrastructure.ExternalServices;
 
 public interface IAddressServiceProxy
 {
-    Task<AddressValidationResultDto> ValidateAddressAsync(string street, string city, string zipCode);
+    Task<AddressValidationResultDto> ValidateAddressAsync(string street, string building, string zipCode, string city);
 }
 
-public record AddressValidationResultDto(string DawaId, AddressValidationStateDto state);
+public record AddressValidationResultDto(string DawaId, AddressValidationStateDto ValidationState);
 
-public record AddressValidationRequestDto(string StreetName, string Building, string ZipCode);
+public record AddressValidationRequestDto(string StreetName, string Building, string ZipCode, string City);

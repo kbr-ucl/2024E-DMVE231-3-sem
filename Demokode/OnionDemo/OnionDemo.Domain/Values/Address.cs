@@ -30,7 +30,7 @@ public record Address : ValueBase
     public static Address Create(string street, string building, string zipCode, string city, IServiceProvider serviceProvider)
     {
         var dawaService = serviceProvider.GetRequiredService<IValidateAddressDomainService>();
-        var dawaValidationRespose = dawaService.ValidateAddress(street, building, city);
+        var dawaValidationRespose = dawaService.ValidateAddress(street, building, zipCode, city);
         return new Address(street, building, city, zipCode, dawaValidationRespose);
     }
 

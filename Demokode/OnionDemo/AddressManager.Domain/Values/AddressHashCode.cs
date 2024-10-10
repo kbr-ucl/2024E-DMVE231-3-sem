@@ -43,6 +43,9 @@ public static class StringExtensionMethods
             int hash1 = 5381;
             int hash2 = hash1;
 
+            if (string.IsNullOrEmpty(str))
+                return 0;
+
             for (int i = 0; i < str.Length && str[i] != '\0'; i += 2)
             {
                 hash1 = ((hash1 << 5) + hash1) ^ str[i];
