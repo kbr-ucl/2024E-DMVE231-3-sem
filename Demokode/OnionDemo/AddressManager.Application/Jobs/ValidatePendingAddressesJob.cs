@@ -31,7 +31,12 @@ public class ValidatePendingAddressesJob : IJob
         foreach (var address in addressesToCheck)
         {
             _logger.LogInformation($"Validating address {address.Id}");
-            _command.ValidateAddress(address.Id);
+            var validated =_command.ValidateAddress(address.Id);
+            foreach (var validatedAddress in validated)
+            {
+                _logger.LogInformation($"Sending validated address {validatedAddress.Id} to BookMyHome");
+                _serviceProxy.SendValidatedAddressAsync(validatedAddress);
+            }
         }
         // Code that sends a periodic email to the user (for example)
         // Note: This method must always return a value 
