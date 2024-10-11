@@ -17,8 +17,8 @@ public class AddressServiceProxy : IAddressServiceProxy
     {
         var requestDto = new AddressValidationRequestDto(street, building, zipCode, city);
         var response = await _client.PostAsJsonAsync("/Address", requestDto);
-        if (!response.IsSuccessStatusCode) return new AddressValidationResultDto( string.Empty, AddressValidationStateDto.Valid);
+        if (!response.IsSuccessStatusCode) return new AddressValidationResultDto( Guid.Empty, AddressValidationStateDto.Uncertain);
         var result = await response.Content.ReadFromJsonAsync<AddressValidationResultDto>();
-        return result ?? new AddressValidationResultDto( string.Empty, AddressValidationStateDto.Valid);
+        return result ?? new AddressValidationResultDto( Guid.Empty, AddressValidationStateDto.Uncertain);
     }
 }

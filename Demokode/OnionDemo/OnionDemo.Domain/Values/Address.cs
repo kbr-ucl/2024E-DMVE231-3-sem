@@ -24,7 +24,7 @@ public record Address : ValueBase
     public string City { get; private set; }
     public string ZipCode { get; private set; }
     public bool IsValid => ValidationState == AddressValidationState.Valid || ValidationState == AddressValidationState.Pending;
-    public string DawaId { get; protected set; }
+    public Guid DawaId { get; protected set; }
     public AddressValidationState ValidationState { get; protected set; }
 
     public static Address Create(string street, string building, string zipCode, string city, IServiceProvider serviceProvider)

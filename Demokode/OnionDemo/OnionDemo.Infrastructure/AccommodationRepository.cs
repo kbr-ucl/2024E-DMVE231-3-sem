@@ -37,7 +37,7 @@ public class AccommodationRepository : IAccommodationRepository
 
     Accommodation IAccommodationRepository.GetAccommodationByDawaId(Guid dawaId)
     {
-        return _db.Accommodations.Include(a => a.Bookings).First(a => a.Address.DawaId == dawaId.ToString());
+        return _db.Accommodations.Include(a => a.Bookings).First(a => a.Address.DawaId == dawaId);
     }
 
     void IAccommodationRepository.Update(Accommodation accommodation)

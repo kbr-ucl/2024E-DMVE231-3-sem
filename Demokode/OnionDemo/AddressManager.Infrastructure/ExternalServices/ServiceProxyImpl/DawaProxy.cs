@@ -32,7 +32,7 @@ public class DawaProxy : IDawaProxy
         if (kategoriNode != null
             && Guid.TryParse(dawaIdNode?.ToString() ?? string.Empty, out Guid dataId))
         {
-            return new GetDawaAddressResponse(AddressFound:true, Id:dataId, Kategori:kategoriNode.ToString());
+            return new GetDawaAddressResponse(AddressFound:true, Id: dataId, Kategori:kategoriNode.ToString());
         };
 
         return new GetDawaAddressResponse(false, Id: Guid.NewGuid());

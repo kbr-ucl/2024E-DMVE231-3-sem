@@ -1,6 +1,4 @@
 ﻿using AddressManager.Domain.Values;
-using System.IO;
-using System.Reflection.Emit;
 
 namespace AddressManager.Domain.Entity;
 
@@ -10,7 +8,8 @@ public class Address : DomainEntity
     {
     }
 
-    protected Address(string street, string building, string zipCode, string city, DawaAddress dawaAddress, AddressHashCode addressHashCode)
+    protected Address(string street, string building, string zipCode, string city, DawaAddress dawaAddress,
+        AddressHashCode addressHashCode)
     {
         Street = street;
         Building = building;

@@ -44,8 +44,14 @@ public static class StringExtensionMethods
             int hash2 = hash1;
 
             if (string.IsNullOrEmpty(str))
-                return 0;
+                return hash1;
 
+            // Normalize the string
+            str = str.ToUpperInvariant();
+            str = str.Trim();
+            str = str.RemoveWhitespace();
+
+            // Compute hash
             for (int i = 0; i < str.Length && str[i] != '\0'; i += 2)
             {
                 hash1 = ((hash1 << 5) + hash1) ^ str[i];
@@ -56,5 +62,12 @@ public static class StringExtensionMethods
 
             return hash1 + (hash2 * 1566083941);
         }
+    }
+
+    public static string RemoveWhitespace(this string input)
+    {
+        return new string(input.ToCharArray()
+            .Where(c => !Char.IsWhiteSpace(c))
+            .ToArray());
     }
 }
