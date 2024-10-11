@@ -35,9 +35,9 @@ public class AccommodationRepository : IAccommodationRepository
         return _db.Accommodations.Include(a => a.Bookings).Single(a => a.Id == id);
     }
 
-    Accommodation IAccommodationRepository.GetAccommodationByDawaId(Guid dawaId)
+    Accommodation IAccommodationRepository.GetAccommodationByDawaCorrelationId(Guid dawaCorrelationId)
     {
-        return _db.Accommodations.Include(a => a.Bookings).First(a => a.Address.DawaId == dawaId);
+        return _db.Accommodations.Include(a => a.Bookings).First(a => a.Address.DawaCorrelationId ==  dawaCorrelationId);
     }
 
     void IAccommodationRepository.Update(Accommodation accommodation)

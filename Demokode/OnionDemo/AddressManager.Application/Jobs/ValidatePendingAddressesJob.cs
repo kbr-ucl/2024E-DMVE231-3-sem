@@ -11,14 +11,16 @@ namespace AddressManager.Application.Jobs;
 public class ValidatePendingAddressesJob : IJob
 {
     private readonly IAddressCommand _command;
+    private readonly IBookMyHomeProxy _serviceProxy;
     private readonly ILogger<ValidatePendingAddressesJob> _logger;
     private readonly IAddressQuery _query;
 
-    public ValidatePendingAddressesJob(IAddressQuery query, IAddressCommand command,
+    public ValidatePendingAddressesJob(IAddressQuery query, IAddressCommand command, IBookMyHomeProxy serviceProxy, 
         ILogger<ValidatePendingAddressesJob> logger)
     {
         _query = query;
         _command = command;
+        _serviceProxy = serviceProxy;
         _logger = logger;
     }
 

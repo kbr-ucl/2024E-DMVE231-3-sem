@@ -29,4 +29,9 @@ public class AddressRepository : IAddressRepository
     {
         return _db.Addresses.First(a => a.Id == id);
     }
+
+    void IAddressRepository.Update()
+    {
+        _db.SaveChanges();
+    }
 }

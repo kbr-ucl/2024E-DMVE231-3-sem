@@ -123,7 +123,7 @@ public class AccommodationCommand : IAccommodationCommand
 
     void IAccommodationCommand.HandleAddressUpdate(AddressValidatedEventDto request)
     {
-        Accommodation accommodation = _repository.GetAccommodationByDawaId(request.DawaId);
+        Accommodation accommodation = _repository.GetAccommodationByDawaCorrelationId(request.DawaCorrelationId);
         accommodation.UpdateAddressState(request.DawaId, Map(request.ValidationState));
         _repository.Update(accommodation);
     }

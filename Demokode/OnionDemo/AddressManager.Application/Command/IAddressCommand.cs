@@ -6,5 +6,5 @@ namespace AddressManager.Application.Command;
 public interface IAddressCommand
 {
     Address CreateAddress(CreateAddressCommandDto command);
-    void ValidateAddress(int id);
+    IEnumerable<Address> ValidateAddress(int id);
 }

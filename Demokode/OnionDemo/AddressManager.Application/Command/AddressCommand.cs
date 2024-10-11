@@ -31,14 +31,17 @@ public class AddressCommand : IAddressCommand
         return address;
     }
 
-    void IAddressCommand.ValidateAddress(int id)
+    IEnumerable<Address> IAddressCommand.ValidateAddress(int id)
     {
+        List<Address> validatedAddresses = new List<Address>();
         var address = _repository.GetAddress(id);
         address.Validate(_ioc);
-        _repository.Add(address);
+        _repository.Update();
         if (address.DawaAddress.ValidationState != AddressValidationState.Pending)
         {
-            
+            validatedAddresses.Add(address);
         }
+
+        return validatedAddresses;
     }
 }

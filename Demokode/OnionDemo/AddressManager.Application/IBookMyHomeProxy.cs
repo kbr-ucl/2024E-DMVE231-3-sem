@@ -1,6 +1,6 @@
 ﻿using AddressManager.Domain.Entity;
 
-namespace AddressManager.Infrastructure.ExternalServices;
+namespace AddressManager.Application;
 
 public interface IBookMyHomeProxy
 {

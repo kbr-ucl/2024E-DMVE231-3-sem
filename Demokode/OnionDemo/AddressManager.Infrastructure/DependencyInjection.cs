@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
+using AddressManager.Application;
 using AddressManager.Application.Command;
 using AddressManager.Application.Query;
 using AddressManager.Domain.DomainServices;
-using AddressManager.Infrastructure.ExternalServices;
 using AddressManager.Infrastructure.ExternalServices.ServiceProxyImpl;
 using AddressManager.Infrastructure.Queries;
 using Microsoft.EntityFrameworkCore;

@@ -8,6 +8,6 @@ public interface IAccommodationRepository
     void AddBooking(Accommodation accommodation);
     void UpdateBooking(Booking booking, byte[] rowversion);
     void Add(Accommodation accommodation);
-    Accommodation GetAccommodationByDawaId(Guid requestDawaId);
+    Accommodation GetAccommodationByDawaCorrelationId(Guid requestDawaId);
     void Update(Accommodation accommodation);
 }
