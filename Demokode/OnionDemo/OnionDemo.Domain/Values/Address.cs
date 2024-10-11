@@ -17,6 +17,7 @@ public record Address : ValueBase
         ZipCode = zipCode;
         ValidationState = dawaValidationRespose.ValidationState;
         DawaId = dawaValidationRespose.DawaId;
+        DawaCorrelationId = dawaValidationRespose.DawaCorrelationId;
     }
 
     public string Street { get; private set; }
@@ -25,6 +26,7 @@ public record Address : ValueBase
     public string ZipCode { get; private set; }
     public bool IsValid => ValidationState == AddressValidationState.Valid || ValidationState == AddressValidationState.Pending;
     public Guid DawaId { get; protected set; }
+    public Guid DawaCorrelationId { get; protected set; }
     public AddressValidationState ValidationState { get; protected set; }
 
     public static Address Create(string street, string building, string zipCode, string city, IServiceProvider serviceProvider)

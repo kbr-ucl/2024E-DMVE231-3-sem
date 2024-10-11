@@ -57,8 +57,8 @@ app.MapGet("/ping", () => { return Results.Ok("Ping reply"); });
 
 app.MapPost("/Address", (CreateAddressRequestDto addressRequest, IAddressCommand addressCommand) =>
     {
-        var address = addressCommand.CreateAddress(new CreateAddressCommandDto(addressRequest.StreetName, addressRequest.Building, addressRequest.ZipCode, addressRequest.City));
-        var response = new CreateAddressResponseDto(address.DawaAddress.DawaId, MapValidationState(address.DawaAddress.ValidationState));
+        var address = addressCommand.CreateAddress(new CreateAddressCommandDto(addressRequest.DawaCorrelationId, addressRequest.StreetName, addressRequest.Building, addressRequest.ZipCode, addressRequest.City));
+        var response = new CreateAddressResponseDto(address.DawaCorrelationId, address.DawaAddress.DawaId, MapValidationState(address.DawaAddress.ValidationState));
         return Results.Ok(response);
     })
     .WithOpenApi(config => new(config)
@@ -104,9 +104,9 @@ AddressValidationStateDto MapValidationState(AddressValidationState validationSt
     }
 }
 
-public record CreateAddressRequestDto(string StreetName, string Building, string ZipCode, string City);
+public record CreateAddressRequestDto(Guid DawaCorrelationId, string StreetName, string Building, string ZipCode, string City);
 
-public record CreateAddressResponseDto(Guid DawaId, AddressValidationStateDto ValidationState);
+public record CreateAddressResponseDto(Guid DawaCorrelationId, Guid DawaId, AddressValidationStateDto ValidationState);
 
 public record GetAddressResponseDto(string StreetName, string Building, string ZipCode, string City, bool IsValid, string DawaId);
 

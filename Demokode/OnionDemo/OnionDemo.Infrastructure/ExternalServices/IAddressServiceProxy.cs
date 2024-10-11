@@ -4,9 +4,10 @@ namespace OnionDemo.Infrastructure.ExternalServices;
 
 public interface IAddressServiceProxy
 {
-    Task<AddressValidationResultDto> ValidateAddressAsync(string street, string building, string zipCode, string city);
+    Task<AddressValidationResultDto> ValidateAddressAsync(Guid dawaCorrelationId, string street, string building,
+        string zipCode, string city);
 }
 
-public record AddressValidationResultDto(Guid DawaId, AddressValidationStateDto ValidationState);
+public record AddressValidationResultDto(Guid DawaCorrelationId, Guid DawaId, AddressValidationStateDto ValidationState);
 
-public record AddressValidationRequestDto(string StreetName, string Building, string ZipCode, string City);
+public record AddressValidationRequestDto(Guid DawaCorrelationId, string StreetName, string Building, string ZipCode, string City);

@@ -12,13 +12,14 @@ public class AddressServiceProxy : IAddressServiceProxy
         _client = client;
     }
 
-    async Task<AddressValidationResultDto> IAddressServiceProxy.ValidateAddressAsync(string street, string building, 
+    async Task<AddressValidationResultDto> IAddressServiceProxy.ValidateAddressAsync(Guid dawaCorrelationId,
+        string street, string building,
         string zipCode, string city)
     {
-        var requestDto = new AddressValidationRequestDto(street, building, zipCode, city);
+        var requestDto = new AddressValidationRequestDto(dawaCorrelationId, street, building, zipCode, city);
         var response = await _client.PostAsJsonAsync("/Address", requestDto);
-        if (!response.IsSuccessStatusCode) return new AddressValidationResultDto( Guid.Empty, AddressValidationStateDto.Uncertain);
+        if (!response.IsSuccessStatusCode) return new AddressValidationResultDto(dawaCorrelationId, Guid.Empty, AddressValidationStateDto.Uncertain);
         var result = await response.Content.ReadFromJsonAsync<AddressValidationResultDto>();
-        return result ?? new AddressValidationResultDto( Guid.Empty, AddressValidationStateDto.Uncertain);
+        return result ?? new AddressValidationResultDto(dawaCorrelationId, Guid.Empty, AddressValidationStateDto.Uncertain);
     }
 }

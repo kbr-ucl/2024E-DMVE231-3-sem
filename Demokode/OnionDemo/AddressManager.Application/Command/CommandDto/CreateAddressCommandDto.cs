@@ -1,3 +1,10 @@
-﻿namespace AddressManager.Application.Command.CommandDto;
+﻿
+namespace AddressManager.Application.Command.CommandDto;
 
-public record CreateAddressCommandDto(string Street, string Building, string ZipCode, string City);
+public record CreateAddressCommandDto(
+    Guid DawaCorrelationId,
+    string Street,
+    string Building,
+    string ZipCode,
+    string City);
+

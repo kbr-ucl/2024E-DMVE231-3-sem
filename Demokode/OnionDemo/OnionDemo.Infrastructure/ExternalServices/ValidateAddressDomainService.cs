@@ -14,8 +14,9 @@ public class ValidateAddressDomainService : IValidateAddressDomainService
     }
     AddressValidationResult IValidateAddressDomainService.ValidateAddress(string street, string building, string zipCode, string city)
     {
-        var result = _addressService.ValidateAddressAsync(street, building, zipCode, city).Result;
-        return new AddressValidationResult(result.DawaId, Map(result.ValidationState));
+        var dawaCorrelationId = Guid.NewGuid();
+        var result = _addressService.ValidateAddressAsync(dawaCorrelationId, street, building, zipCode, city).Result;
+        return new AddressValidationResult(dawaCorrelationId, result.DawaId, Map(result.ValidationState));
     }
 
     private AddressValidationState Map(AddressValidationStateDto state)

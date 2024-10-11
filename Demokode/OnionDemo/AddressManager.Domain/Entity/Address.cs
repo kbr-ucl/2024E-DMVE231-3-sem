@@ -8,7 +8,7 @@ public class Address : DomainEntity
     {
     }
 
-    protected Address(string street, string building, string zipCode, string city, DawaAddress dawaAddress,
+    protected Address(Guid dawaCorrelationId, string street, string building, string zipCode, string city, DawaAddress dawaAddress,
         AddressHashCode addressHashCode)
     {
         Street = street;
@@ -17,6 +17,7 @@ public class Address : DomainEntity
         ZipCode = zipCode;
         DawaAddress = dawaAddress;
         AddressHashCode = addressHashCode;
+        DawaCorrelationId = dawaCorrelationId;
     }
 
     public string Street { get; protected set; } = null!;
@@ -25,12 +26,13 @@ public class Address : DomainEntity
     public string ZipCode { get; protected set; } = null!;
     public DawaAddress DawaAddress { get; protected set; } = null!;
     public AddressHashCode AddressHashCode { get; protected set; }
+    public Guid DawaCorrelationId { get; protected set; }
 
-    public static Address Create(string street, string building, string zipCode, string city, IServiceProvider ioc)
+    public static Address Create(Guid dawaCorrelationId, string street, string building, string zipCode, string city, IServiceProvider ioc)
     {
         var dawaAddress = DawaAddress.Create(street, building, zipCode, city, ioc);
         var addressHashCode = AddressHashCode.Create(street, building, zipCode, city);
-        return new Address(street, building, zipCode, city, dawaAddress, addressHashCode);
+        return new Address(dawaCorrelationId, street, building, zipCode, city, dawaAddress, addressHashCode);
     }
 
     public void Validate(IServiceProvider ioc)

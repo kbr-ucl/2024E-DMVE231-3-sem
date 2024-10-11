@@ -26,7 +26,7 @@ public class AddressCommand : IAddressCommand
         }
 
         // Hvis adressen ikke er kendt, oprettes den
-        address = Address.Create(command.Street, command.Building, command.ZipCode, command.City, _ioc);
+        address = Address.Create(command.DawaCorrelationId, command.Street, command.Building, command.ZipCode, command.City, _ioc);
         _repository.Add(address);
         return address;
     }
