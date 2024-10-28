@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "GetWeather",
+			"name": "Register a new user",
 			"request": {
 				"method": "GET",
 				"header": []
@@ -23,7 +23,15 @@
 			"response": []
 		},
 		{
-			"name": "Register a new user",
+			"name": "AddClaim",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetWeather",
 			"request": {
 				"method": "GET",
 				"header": []
@@ -32,6 +40,36 @@
 		},
 		{
 			"name": "Call Weather API",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "CfDJ8MoKdElz7EdKnqGCljxdDAq1sUbrA143hbtZug6_QXvdEqq1LrQE5SaV7Si68siXBSgYLnqBRAMNoQ3Ftru1pxcfBefsm8O4AUG2K5vlJUTFhjA62Uawf1bpswEnpzxeEl4njTQM8ktA9NDfLR-Fi7mgl_6lvSXQvyamB9O9qdKUfeK4VRvFJL406WmSUvryIE8Kkn66GBkth51putTGCTZVufSN2rCvMrOyYKXPnlNj82rQWCP2OOqctwfVGXCiQVBIUhfGlsDLR8JnCg_K56owt8rgVdBoAyEy53He83BmiZOQTKVDmt2fr52xuabGCSJvhIfpqnAhYg34nBkXPbPY5hEzmL6ahw5jOWzWzMOSvDuiu17zc_lFlbXPrCfVrCx3MOkTkDG0hmVpjNF8KBbXmAg0pIAO5IeTpyUlVjhH8s99pzstWaU6ohJsC9123H9Oxj19EDKh2o0YHDzDAgmYJJzfSz1s3F6M8RDIkWUnez_L2w_m11MoKgmRjoZsppVDEmG6kj4Rg71lZ_wOTAE1j0o6F5uKLxWzLdZsy8kqEwR5hrqo4ZRU_3BRRaAFqWW80kYl-2elrK4eXiRcOIsriKkZW1MUtBhqeeUZlj1ujQCdTS8dU16J2yHkmN3-xsmvOs6tmYlifhuLQ0489lKfIuG2inFcmD8LfRS5n5di73MaiequowE1eIU2T4W8E0E1Rz-7lRA5Kw_70JD7OpXcDrLoOYEIDeYzGzdmUnBO",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:18080/weather/weatherforecast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18080",
+					"path": [
+						"weather",
+						"weatherforecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin-Summaries",
 			"request": {
 				"method": "GET",
 				"header": []

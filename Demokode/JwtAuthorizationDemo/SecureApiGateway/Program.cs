@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SecureApiGateway.Database;
@@ -11,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+builder.Services.AddScoped<UserManager<AppUser>>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -50,6 +53,9 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("customPolicy", policy =>
         policy.RequireAuthenticatedUser());
+
+    options.AddPolicy("adminPolicy", policy =>
+        policy.RequireClaim("adminClaim"));
 });
 
 var app = builder.Build();
@@ -67,26 +73,35 @@ app.UseAuthorization();
 
 app.MapGroup("/account").MapIdentityApi<AppUser>();
 
+app.MapPost("/claim", (ClaimDto claim, UserManager<AppUser> userManager, HttpContext context) =>
+{
+    //return Results.Ok(context.User.Identity.Name);
+    var user = userManager.FindByNameAsync(context.User.Identity.Name).Result;
+
+    var identityResult = userManager.AddClaimAsync(user, new Claim(claim.Type, claim.Value)).Result;
+    var updateResult = userManager.UpdateAsync(user).Result;
+}).RequireAuthorization();
+
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
 app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.RequireAuthorization()
-.WithOpenApi();
+    {
+        var forecast = Enumerable.Range(1, 5).Select(index =>
+                new WeatherForecast
+                (
+                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    Random.Shared.Next(-20, 55),
+                    summaries[Random.Shared.Next(summaries.Length)]
+                ))
+            .ToArray();
+        return forecast;
+    })
+    .WithName("GetWeatherForecast")
+    .RequireAuthorization()
+    .WithOpenApi();
 
 app.MapReverseProxy();
 app.Run();
@@ -95,3 +110,5 @@ internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+
+internal record ClaimDto(string Type, string Value);

@@ -14,29 +14,53 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+
+MapWeather(app);
+MapSummaries(app);
 
 app.Run();
+
+
+void MapWeather(WebApplication webApplication)
+{
+    webApplication.MapGet("/weatherforecast", () =>
+        {
+            var forecast = Enumerable.Range(1, 5).Select(index =>
+                    new WeatherForecast
+                    (
+                        DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                        Random.Shared.Next(-20, 55),
+                        SummariesRepo.Summaries[Random.Shared.Next(SummariesRepo.Summaries.Length)]
+                    ))
+                .ToArray();
+            return forecast;
+        })
+        .WithName("WeatherForecast")
+        .WithOpenApi();
+}
+
+void MapSummaries(WebApplication webApplication)
+{
+    webApplication.MapPost("/summaries", (string[] summaries) =>
+        {
+            SummariesRepo.Summaries = summaries;
+        })
+        .WithName("Summaries")
+        .WithOpenApi();
+}
+
+
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
+
+internal class SummariesRepo
+{
+    public static  string[] Summaries  = new[]
+    {
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    };
 }
