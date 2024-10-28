@@ -1,0 +1,33 @@
+@SecureApiGateway_HostAddress = https://localhost:7103
+
+GET {{SecureApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+### Register a new user
+POST {{SecureApiGateway_HostAddress}}/account/register
+Content-Type: application/json
+
+{
+  "username": "andrew@example.com",
+  "password": "SuperSecret1!",
+  "email": "andrew@example.com"
+}
+
+
+### Login and retrieve tokens
+// @name loginRequest
+POST {{SecureApiGateway_HostAddress}}/account/login
+Content-Type: application/json
+
+{
+  "username": "andrew@example.com",
+  "password": "SuperSecret1!",
+  "email": "andrew@example.com"
+}
+
+### Call Forecast API with bearer token
+@accessToken = {{loginRequest.response.body.accessToken}}
+GET {{SecureApiGateway_HostAddress}}/weatherforecast
+Authorization: Bearer {{accessToken}}
