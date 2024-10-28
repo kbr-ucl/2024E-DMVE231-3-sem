@@ -1,6 +1,6 @@
 @SecureApiGateway_HostAddress = https://localhost:7103
 
-GET {{SecureApiGateway_HostAddress}}/weatherforecast/
+GET {{SecureApiGateway_HostAddress}}/weather/weatherforecast/
 Accept: application/json
 
 ###
@@ -15,9 +15,8 @@ Content-Type: application/json
   "email": "andrew@example.com"
 }
 
-
 ### Login and retrieve tokens
-// @name loginRequest
+# @name loginRequest
 POST {{SecureApiGateway_HostAddress}}/account/login
 Content-Type: application/json
 

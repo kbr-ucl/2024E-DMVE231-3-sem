@@ -1,0 +1,15 @@
+services:
+  secureapigateway:
+    image: ${DOCKER_REGISTRY-}secureapigateway
+    build:
+      context: .
+      dockerfile: SecureApiGateway/Dockerfile
+
+  weather.api:
+    image: ${DOCKER_REGISTRY-}weatherservice
+    build:
+      context: .
+      dockerfile: WeatherService/Dockerfile
+
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"

@@ -41,6 +41,10 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
+// Add Reverse Proxy services
+builder.Services.AddReverseProxy()
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,7 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -77,6 +81,7 @@ app.MapGet("/weatherforecast", () =>
 .RequireAuthorization()
 .WithOpenApi();
 
+app.MapReverseProxy();
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

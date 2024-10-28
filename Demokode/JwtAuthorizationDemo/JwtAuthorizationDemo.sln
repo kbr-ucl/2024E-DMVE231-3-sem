@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35417.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureApiGateway", "SecureApiGateway\SecureApiGateway.csproj", "{DF469CA4-7A2B-4ACA-9BA0-2BC92E2FB3E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherService", "WeatherService\WeatherService.csproj", "{B705827B-63D4-4EF0-B120-A8416FD08376}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1BCCF6B5-9B1A-46B9-9B6E-0EA9ADAF4C7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DF469CA4-7A2B-4ACA-9BA0-2BC92E2FB3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF469CA4-7A2B-4ACA-9BA0-2BC92E2FB3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF469CA4-7A2B-4ACA-9BA0-2BC92E2FB3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B705827B-63D4-4EF0-B120-A8416FD08376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B705827B-63D4-4EF0-B120-A8416FD08376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B705827B-63D4-4EF0-B120-A8416FD08376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B705827B-63D4-4EF0-B120-A8416FD08376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCCF6B5-9B1A-46B9-9B6E-0EA9ADAF4C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCCF6B5-9B1A-46B9-9B6E-0EA9ADAF4C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCCF6B5-9B1A-46B9-9B6E-0EA9ADAF4C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCCF6B5-9B1A-46B9-9B6E-0EA9ADAF4C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
