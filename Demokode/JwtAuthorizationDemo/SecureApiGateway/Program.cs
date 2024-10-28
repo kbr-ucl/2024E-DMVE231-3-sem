@@ -39,11 +39,18 @@ builder.Services
     .AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<AppDbContext>();
 
-builder.Services.AddAuthorization();
+// builder.Services.AddAuthorization();
 
 // Add Reverse Proxy services
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+
+// Add Authentication services med Policy
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("customPolicy", policy =>
+        policy.RequireAuthenticatedUser());
+});
 
 var app = builder.Build();
 
