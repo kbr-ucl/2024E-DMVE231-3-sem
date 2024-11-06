@@ -39,8 +39,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 builder.Services
-    .AddIdentityApiEndpoints<AppUser>()
-    .AddEntityFrameworkStores<AppDbContext>();
+    .AddIdentityApiEndpoints<AppUser>() //Gude linje
+    .AddEntityFrameworkStores<AppDbContext>(); //Gude linje
 
 // builder.Services.AddAuthorization();
 
@@ -71,7 +71,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGroup("/account").MapIdentityApi<AppUser>();
+app.MapGroup("/account").MapIdentityApi<AppUser>(); //Gude linje
 
 app.MapPost("/claim", (ClaimDto claim, UserManager<AppUser> userManager, HttpContext context) =>
 {
