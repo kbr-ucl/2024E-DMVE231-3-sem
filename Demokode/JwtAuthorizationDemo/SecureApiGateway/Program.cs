@@ -73,13 +73,13 @@ app.UseAuthorization();
 
 app.MapGroup("/account").MapIdentityApi<AppUser>(); //Gude linje
 
-app.MapPost("/claim", (ClaimDto claim, UserManager<AppUser> userManager, HttpContext context) =>
+app.MapPost("/claim", async (ClaimDto claim, UserManager<AppUser> userManager, HttpContext context) =>
 {
     //return Results.Ok(context.User.Identity.Name);
-    var user = userManager.FindByNameAsync(context.User.Identity.Name).Result;
+    var user = await userManager.FindByNameAsync(context.User.Identity.Name);//.Result;
 
-    var identityResult = userManager.AddClaimAsync(user, new Claim(claim.Type, claim.Value)).Result;
-    var updateResult = userManager.UpdateAsync(user).Result;
+    var identityResult = await userManager.AddClaimAsync(user, new Claim(claim.Type, claim.Value));//.Result;
+    var updateResult = await userManager.UpdateAsync(user);//.Result;
 }).RequireAuthorization();
 
 var summaries = new[]
